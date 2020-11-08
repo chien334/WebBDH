@@ -23,6 +23,15 @@
     <PackageReference Include="System.Linq" Version="4.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\Admin\" />
+    <Folder Include="Images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BDH\BDH.csproj" />
+  </ItemGroup>
+
 
 
 </Project>

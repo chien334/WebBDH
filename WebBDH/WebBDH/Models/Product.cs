@@ -14,7 +14,7 @@ namespace WebBDH.Models
         public string Color { get; set; }
         public double? Weight { get; set; }
         public bool? Sex { get; set; }
-        public long IdBrand { get; set; }
+        public long? IdBrand { get; set; }
         public string CreateBy { get; set; }
         public DateTime? CreateTime { get; set; }
         public string LastUpdateBy { get; set; }
@@ -23,5 +23,6 @@ namespace WebBDH.Models
         public virtual Brand IdBrandNavigation { get; set; }
         public virtual LoaiDay IdLoaiDayNavigation { get; set; }
         public virtual MatDongHo IdMatDhNavigation { get; set; }
+        public virtual Image Image { get; set; }
     }
 }

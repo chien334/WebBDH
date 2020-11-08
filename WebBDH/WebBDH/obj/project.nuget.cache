@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "zAK6UOJbZruWqlkJq+HJ8cHrjiQYcPucr8o2jU3q5vtoRtOINQQUUW0ETKfcbsBfzcCvfMTUBPiA3JKB9zk30Q==",
+  "dgSpecHash": "9MdtJl46eEzYqOJqpd7W0M1q3tFE6mhAzfA1V+x5J5jkIHIWPZpK33wKMz9ZptOX3ZSKdlQ5M4brgdtOL1ELQw==",
   "success": true,
   "projectFilePath": "C:\\Users\\lequy\\Desktop\\WebBDH\\WebBDH\\WebBDH\\WebBDH.csproj",
   "expectedPackageFiles": [
@@ -74,6 +74,7 @@
     "C:\\Users\\lequy\\.nuget\\packages\\system.io.filesystem\\4.3.0\\system.io.filesystem.4.3.0.nupkg.sha512",
     "C:\\Users\\lequy\\.nuget\\packages\\system.io.filesystem.primitives\\4.3.0\\system.io.filesystem.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\lequy\\.nuget\\packages\\system.linq\\4.3.0\\system.linq.4.3.0.nupkg.sha512",
+    "C:\\Users\\lequy\\.nuget\\packages\\system.linq.dynamic.core\\1.2.5\\system.linq.dynamic.core.1.2.5.nupkg.sha512",
     "C:\\Users\\lequy\\.nuget\\packages\\system.net.nameresolution\\4.3.0\\system.net.nameresolution.4.3.0.nupkg.sha512",
     "C:\\Users\\lequy\\.nuget\\packages\\system.net.primitives\\4.3.0\\system.net.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\lequy\\.nuget\\packages\\system.private.datacontractserialization\\4.3.0\\system.private.datacontractserialization.4.3.0.nupkg.sha512",

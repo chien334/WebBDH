@@ -1,8 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using WebBDH.Models;
 
-namespace WebBDH.Models
+namespace WebBDH.Responsitories
 {
     public partial class BDHContext : DbContext
     {
@@ -16,17 +17,13 @@ namespace WebBDH.Models
         }
 
         public virtual DbSet<Brand> Brand { get; set; }
+        public virtual DbSet<Image> Image { get; set; }
         public virtual DbSet<LoaiDay> LoaiDay { get; set; }
         public virtual DbSet<MatDongHo> MatDongHo { get; set; }
         public virtual DbSet<Product> Product { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=.\\MSSQL;Database=BDH;Trusted_Connection=True;");
-            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -44,6 +41,32 @@ namespace WebBDH.Models
                 entity.Property(e => e.LastUpdateTime).HasColumnType("datetime");
 
                 entity.Property(e => e.Name).HasMaxLength(255);
+            });
+
+            modelBuilder.Entity<Image>(entity =>
+            {
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.Property(e => e.CreateBy).HasMaxLength(50);
+
+                entity.Property(e => e.CreateTime).HasColumnType("datetime");
+
+                entity.Property(e => e.LastUpdateBy).HasMaxLength(50);
+
+                entity.Property(e => e.LastUpdateTime).HasColumnType("datetime");
+
+                entity.Property(e => e.Path)
+                    .HasColumnName("path")
+                    .HasMaxLength(255)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Stt).HasColumnName("stt");
+
+                entity.HasOne(d => d.IdNavigation)
+                    .WithOne(p => p.Image)
+                    .HasForeignKey<Image>(d => d.Id)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Image_Product");
             });
 
             modelBuilder.Entity<LoaiDay>(entity =>
@@ -78,15 +101,11 @@ namespace WebBDH.Models
 
             modelBuilder.Entity<Product>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.Color).HasMaxLength(50);
 
                 entity.Property(e => e.CreateBy).HasMaxLength(50);
 
                 entity.Property(e => e.CreateTime).HasColumnType("datetime");
-
-                entity.Property(e => e.IdBrand).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.IdMatDh).HasColumnName("IdMatDH");
 
@@ -99,7 +118,6 @@ namespace WebBDH.Models
                 entity.HasOne(d => d.IdBrandNavigation)
                     .WithMany(p => p.Product)
                     .HasForeignKey(d => d.IdBrand)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Product_Brand");
 
                 entity.HasOne(d => d.IdLoaiDayNavigation)

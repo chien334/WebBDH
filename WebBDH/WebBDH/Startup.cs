@@ -6,10 +6,11 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using WebBDH.Responsitories;
 
 namespace WebBDH
 {
@@ -25,6 +26,10 @@ namespace WebBDH
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc(option => option.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            services.AddControllers();
+
+            services.AddDbContext<BDHContext>(options => options.UseSqlServer(Configuration.GetConnectionString("BDHContext")));
             services.AddControllers();
         }
 
@@ -39,8 +44,10 @@ namespace WebBDH
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseAuthentication();
 
             app.UseAuthorization();
+            app.UseCors();
 
             app.UseEndpoints(endpoints =>
             {
