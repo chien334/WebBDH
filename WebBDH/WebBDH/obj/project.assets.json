@@ -1548,19 +1548,6 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
-      },
-      "BDH/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "dependencies": {
-          "System.Linq": "4.3.0"
-        },
-        "compile": {
-          "bin/placeholder/BDH.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/BDH.dll": {}
-        }
       }
     }
   },
@@ -5680,16 +5667,10 @@
         "system.xml.xmlserializer.4.3.0.nupkg.sha512",
         "system.xml.xmlserializer.nuspec"
       ]
-    },
-    "BDH/1.0.0": {
-      "type": "project",
-      "path": "../BDH/BDH.csproj",
-      "msbuildProject": "../BDH/BDH.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "BDH >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 3.1.9",
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 3.1.9",
       "Microsoft.AspNetCore.SpaServices >= 3.1.9",
@@ -5727,11 +5708,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "projectReferences": {
-            "C:\\Users\\lequy\\Desktop\\WebBDH\\WebBDH\\BDH\\BDH.csproj": {
-              "projectPath": "C:\\Users\\lequy\\Desktop\\WebBDH\\WebBDH\\BDH\\BDH.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
