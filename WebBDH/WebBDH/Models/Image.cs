@@ -14,6 +14,6 @@ namespace WebBDH.Models
         public string LastUpdateBy { get; set; }
         public DateTime? LastUpdateTime { get; set; }
 
-        public virtual Product IdNavigation { get; set; }
+        public virtual Product IdProductNavigation { get; set; }
     }
 }

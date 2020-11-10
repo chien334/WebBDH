@@ -6,3 +6,4 @@ C:\Users\lequy\Desktop\WebBDH\WebBDH\BDH\obj\Debug\netstandard2.0\BDH.AssemblyIn
 C:\Users\lequy\Desktop\WebBDH\WebBDH\BDH\obj\Debug\netstandard2.0\BDH.AssemblyInfo.cs
 C:\Users\lequy\Desktop\WebBDH\WebBDH\BDH\obj\Debug\netstandard2.0\BDH.dll
 C:\Users\lequy\Desktop\WebBDH\WebBDH\BDH\obj\Debug\netstandard2.0\BDH.pdb
+C:\Users\lequy\Desktop\WebBDH\WebBDH\BDH\obj\Debug\netstandard2.0\BDH.csproj.CoreCompileInputs.cache

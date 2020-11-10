@@ -82,7 +82,7 @@ namespace BDH.Models
                 AddRange(queryable.ToList());
             }
         }
-        public PagedList(List<T> data, int currentPage, int pageCount, int pageSize, int rowCount) : base()
+        public PagedList(List<T> data, int currentPage, int pageCount, int pageSize, int rowCount) : base(data)
         {
             this.PageNumber = currentPage;
             this.PagesCount = pageCount;

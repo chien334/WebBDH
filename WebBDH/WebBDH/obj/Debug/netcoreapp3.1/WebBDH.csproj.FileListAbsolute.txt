@@ -72,3 +72,6 @@ C:\Users\lequy\Desktop\WebBDH\WebBDH\WebBDH\obj\Debug\netcoreapp3.1\WebBDH.MvcAp
 C:\Users\lequy\Desktop\WebBDH\WebBDH\WebBDH\obj\Debug\netcoreapp3.1\WebBDH.dll
 C:\Users\lequy\Desktop\WebBDH\WebBDH\WebBDH\obj\Debug\netcoreapp3.1\WebBDH.pdb
 C:\Users\lequy\Desktop\WebBDH\WebBDH\WebBDH\obj\Debug\netcoreapp3.1\WebBDH.genruntimeconfig.cache
+C:\Users\lequy\Desktop\WebBDH\WebBDH\WebBDH\bin\Debug\netcoreapp3.1\System.Linq.Dynamic.Core.dll
+C:\Users\lequy\Desktop\WebBDH\WebBDH\WebBDH\bin\Debug\netcoreapp3.1\BDH.dll
+C:\Users\lequy\Desktop\WebBDH\WebBDH\WebBDH\bin\Debug\netcoreapp3.1\BDH.pdb

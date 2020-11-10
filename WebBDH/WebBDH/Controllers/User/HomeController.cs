@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using BDH.Models;
+using BDH.Services;
 using Microsoft.AspNetCore.Mvc;
+using WebBDH.Models.Queries;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,36 +16,23 @@ namespace WebBDH.Controllers.User
     [ApiController]
     public class HomeController : ControllerBase
     {
-        // GET: api/<HomeController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private IService _service;
+
+        public HomeController(IService service)
         {
-            return new string[] { "value1", "value2" };
+            _service = service;
         }
 
-        // GET api/<HomeController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<HomeController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<JsonResult> LoadProducts(QueryModel<ProductQuery> query, CancellationToken cancelllationToken)
         {
+            var data = await _service.LoadListProduct(query, cancelllationToken);
+            return new JsonResult( new
+            {
+                Items=data.ToArray(),
+                ToTalCount= data.TotalCount
+            });
         }
 
-        // PUT api/<HomeController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<HomeController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }

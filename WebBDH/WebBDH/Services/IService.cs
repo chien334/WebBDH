@@ -1,4 +1,5 @@
 ﻿using BDH.Models;
+using BDH.Models.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,5 +14,7 @@ namespace BDH.Services
     public  partial interface IService
     {
         Task<IPagedList<ProductView>> LoadListProduct(QueryModel<ProductQuery> model, CancellationToken cancellation = default);
+        Task<IPagedList<MatDongHoView>> LoadListMatDH(QueryModel<MatDongHoQuery> model, CancellationToken cancellation = default);
+        Task<List<ProductView>> LoadAllProduct(CancellationToken cancellation = default);
     }
 }

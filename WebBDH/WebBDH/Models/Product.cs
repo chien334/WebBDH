@@ -5,6 +5,11 @@ namespace WebBDH.Models
 {
     public partial class Product
     {
+        public Product()
+        {
+            Image = new HashSet<Image>();
+        }
+
         public long Id { get; set; }
         public string Name { get; set; }
         public long? IdLoaiDay { get; set; }
@@ -23,6 +28,6 @@ namespace WebBDH.Models
         public virtual Brand IdBrandNavigation { get; set; }
         public virtual LoaiDay IdLoaiDayNavigation { get; set; }
         public virtual MatDongHo IdMatDhNavigation { get; set; }
-        public virtual Image Image { get; set; }
+        public virtual ICollection<Image> Image { get; set; }
     }
 }

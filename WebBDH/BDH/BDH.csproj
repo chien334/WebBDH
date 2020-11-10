@@ -5,11 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Linq" Version="4.3.0" />
+    <Compile Remove="Models\Views\**" />
+    <EmbeddedResource Remove="Models\Views\**" />
+    <None Remove="Models\Views\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\Views\" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.9" />
+    <PackageReference Include="System.Linq" Version="4.3.0" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.5" />
   </ItemGroup>
 
 </Project>

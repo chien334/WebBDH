@@ -5,7 +5,7 @@ using WebBDH.Models;
 
 namespace WebBDH.Responsitories
 {
-    public partial class BDHContext : DbContext
+  public partial class BDHContext : DbContext
     {
         public BDHContext()
         {
@@ -16,6 +16,7 @@ namespace WebBDH.Responsitories
         {
         }
 
+        public virtual DbSet<AccountAdmin> AccountAdmin { get; set; }
         public virtual DbSet<Brand> Brand { get; set; }
         public virtual DbSet<Image> Image { get; set; }
         public virtual DbSet<LoaiDay> LoaiDay { get; set; }
@@ -24,10 +25,49 @@ namespace WebBDH.Responsitories
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Server=.\\MSSQL;Database=BDH;Trusted_Connection=True;");
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<AccountAdmin>(entity =>
+            {
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.Property(e => e.CreateBy).HasMaxLength(50);
+
+                entity.Property(e => e.CreateTime).HasColumnType("datetime");
+
+                entity.Property(e => e.Email)
+                    .HasMaxLength(150)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.FirstName).HasMaxLength(50);
+
+                entity.Property(e => e.LastName).HasMaxLength(50);
+
+                entity.Property(e => e.LastUpdateBy).HasMaxLength(50);
+
+                entity.Property(e => e.LastUpdateTime).HasColumnType("datetime");
+
+                entity.Property(e => e.Password)
+                    .HasMaxLength(128)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Phone)
+                    .HasMaxLength(20)
+                    .IsFixedLength();
+
+                entity.Property(e => e.UserName)
+                    .HasMaxLength(80)
+                    .IsUnicode(false);
+            });
+
             modelBuilder.Entity<Brand>(entity =>
             {
                 entity.Property(e => e.CreateBy).HasMaxLength(50);
@@ -62,11 +102,10 @@ namespace WebBDH.Responsitories
 
                 entity.Property(e => e.Stt).HasColumnName("stt");
 
-                entity.HasOne(d => d.IdNavigation)
-                    .WithOne(p => p.Image)
-                    .HasForeignKey<Image>(d => d.Id)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Image_Product");
+                entity.HasOne(d => d.IdProductNavigation)
+                    .WithMany(p => p.Image)
+                    .HasForeignKey(d => d.IdProduct)
+                    .HasConstraintName("FK_Image_Product1");
             });
 
             modelBuilder.Entity<LoaiDay>(entity =>
