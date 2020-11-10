@@ -1,6 +1,9 @@
 ﻿using System;
+using BDH.IoC;
+using BDH.Metadata;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.DependencyInjection;
 using WebBDH.Models;
 
 namespace WebBDH.Responsitories
@@ -10,10 +13,11 @@ namespace WebBDH.Responsitories
         public BDHContext()
         {
         }
-
+        private IServiceProvider _serviceProvider;
         public BDHContext(DbContextOptions<BDHContext> options)
             : base(options)
         {
+            _serviceProvider = Container.Services;
         }
 
         public virtual DbSet<AccountAdmin> AccountAdmin { get; set; }
@@ -34,6 +38,8 @@ namespace WebBDH.Responsitories
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            var dbDescription = _serviceProvider.GetService<IDbDescription>();
+            dbDescription = new SqlServerDescription();
             modelBuilder.Entity<AccountAdmin>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
@@ -169,8 +175,9 @@ namespace WebBDH.Responsitories
                     .HasForeignKey(d => d.IdMatDh)
                     .HasConstraintName("FK_Product_MatDongHo");
             });
-
+            ApplyConfiguration(modelBuilder, dbDescription);
             OnModelCreatingPartial(modelBuilder);
+            
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
