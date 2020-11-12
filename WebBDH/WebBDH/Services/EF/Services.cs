@@ -16,7 +16,12 @@ namespace BDH.Services.EF
 {
     public partial class Services : IService
     {
-        BDHContext dbContext = new BDHContext();
+        BDHContext dbContext;
+
+        public Services(BDHContext dbContext)
+        {
+            this.dbContext = dbContext;
+        }
 
         public async Task<List<ProductView>> LoadAllProduct(CancellationToken cancellation = default)
         {

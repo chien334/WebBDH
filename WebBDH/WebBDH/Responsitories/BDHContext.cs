@@ -10,14 +10,16 @@ namespace WebBDH.Responsitories
 {
   public partial class BDHContext : DbContext
     {
-        public BDHContext()
-        {
-        }
-        private IServiceProvider _serviceProvider;
+        //public BDHContext()
+        //{
+        //}
+        private readonly IServiceProvider _serviceProvider;
         public BDHContext(DbContextOptions<BDHContext> options)
             : base(options)
         {
             _serviceProvider = Container.Services;
+            if(_serviceProvider==null) 
+                _serviceProvider= new ServiceCollection().BuildServiceProvider();
         }
 
         public virtual DbSet<AccountAdmin> AccountAdmin { get; set; }
