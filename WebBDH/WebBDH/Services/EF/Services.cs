@@ -39,7 +39,15 @@ namespace BDH.Services.EF
                )
                .Select(x => new MatDongHoView(x)).PageResultAsync(model.Page, model.PageSize, cancellation);
         }
-
+        public async Task<IPagedList<AccountView>> LoadListAccount(QueryModel<AccountQuery> model, CancellationToken cancellation = default)
+        {
+            return await dbContext.Set<AccountAdmin>()
+               .AsNoTracking()
+               .Where(e => (model.Entity.FirstName == default || e.FirstName.Contains(model.Entity.FirstName)) &&
+                (model.Entity.LastName == default || e.LastName.Contains(model.Entity.LastName))
+               )
+               .Select(x => new AccountView(x)).PageResultAsync(model.Page, model.PageSize, cancellation);
+        }
         public async Task<IPagedList<ProductView>> LoadListProduct(QueryModel<ProductQuery> model, CancellationToken cancellation = default)
         {
             return await dbContext.Set<Product>()

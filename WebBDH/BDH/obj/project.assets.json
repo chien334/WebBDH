@@ -2226,19 +2226,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\lequy\\.nuget\\packages\\": {}
+    "C:\\Users\\tuanHoan\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\lequy\\Desktop\\WebBDH\\WebBDH\\BDH\\BDH.csproj",
+      "projectUniqueName": "C:\\Users\\tuanHoan\\Documents\\WebBDH\\WebBDH\\BDH\\BDH.csproj",
       "projectName": "BDH",
-      "projectPath": "C:\\Users\\lequy\\Desktop\\WebBDH\\WebBDH\\BDH\\BDH.csproj",
-      "packagesPath": "C:\\Users\\lequy\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\lequy\\Desktop\\WebBDH\\WebBDH\\BDH\\obj\\",
+      "projectPath": "C:\\Users\\tuanHoan\\Documents\\WebBDH\\WebBDH\\BDH\\BDH.csproj",
+      "packagesPath": "C:\\Users\\tuanHoan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\tuanHoan\\Documents\\WebBDH\\WebBDH\\BDH\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\lequy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\tuanHoan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
