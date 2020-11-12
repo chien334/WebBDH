@@ -48,6 +48,14 @@ namespace BDH.Services.EF
                )
                .Select(x => new AccountView(x)).PageResultAsync(model.Page, model.PageSize, cancellation);
         }
+        public async Task<IPagedList<ImageView>> LoadImage(QueryModel<ImageQuery> model, CancellationToken cancellation = default)
+        {
+            return await dbContext.Set<Image>()
+               .AsNoTracking()
+               .Where(e => (model.Entity.Path == default || e.Path.Contains(model.Entity.Path))  
+               )
+               .Select(x => new ImageView(x)).PageResultAsync(model.Page, model.PageSize, cancellation);
+        }
         public async Task<IPagedList<ProductView>> LoadListProduct(QueryModel<ProductQuery> model, CancellationToken cancellation = default)
         {
             return await dbContext.Set<Product>()

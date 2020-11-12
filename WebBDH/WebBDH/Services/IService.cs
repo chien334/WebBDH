@@ -17,5 +17,6 @@ namespace BDH.Services
         Task<IPagedList<MatDongHoView>> LoadListMatDH(QueryModel<MatDongHoQuery> model, CancellationToken cancellation = default);
         Task<List<ProductView>> LoadAllProduct(CancellationToken cancellation = default);
         Task<IPagedList<AccountView>> LoadListAccount(QueryModel<AccountQuery> model, CancellationToken cancellation = default);
+        Task<IPagedList<ImageView>> LoadImage(QueryModel<ImageQuery> model, CancellationToken cancellation = default);
     }
 }
