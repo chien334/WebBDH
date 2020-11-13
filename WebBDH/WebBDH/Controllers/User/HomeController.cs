@@ -16,9 +16,9 @@ namespace WebBDH.Controllers.User
     [ApiController]
     public class HomeController : ControllerBase
     {
-        private IService _service;
+        private IQueryServices _service;
 
-        public HomeController(IService service)
+        public HomeController(IQueryServices service)
         {
             _service = service;
         }

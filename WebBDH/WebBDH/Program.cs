@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using BDH.IoC;
@@ -15,6 +16,10 @@ namespace WebBDH
     {
         public static int Main(string[] args)
         {
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .Build();
             try
             {
                 var host = CreateHostBuilder(args).Build();

@@ -1,4 +1,6 @@
-﻿using BDH.Models;
+﻿using BDH.Data;
+using BDH.Data.EFService;
+using BDH.Models;
 using BDH.Models.Views;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -14,15 +16,55 @@ using WebBDH.Responsitories;
 
 namespace BDH.Services.EF
 {
-    public partial class Services : IService
+    public partial class QueryServices : IQueryServices
     {
         BDHContext dbContext;
 
-        public Services(BDHContext dbContext)
+        public QueryServices(BDHContext dbContext)
         {
             this.dbContext = dbContext;
         }
+        public virtual async Task AddAsync<T>(T entity, CancellationToken cancellationToken) where T : class
+        {
+            await dbContext.Set<T>().AddAsync(entity, cancellationToken);
+            return;
+        }
 
+        public virtual async Task AddAsync<T>(IEnumerable<T> entity, CancellationToken cancellationToken) where T : class
+        {
+            await dbContext.Set<T>().AddRangeAsync(entity, cancellationToken);
+            return;
+        }
+
+        public virtual Task DeleteAsync<T>(T entity, CancellationToken cancellationToken) where T : class
+        {
+            dbContext.Set<T>().Remove(entity);
+            return Task.CompletedTask;
+        }
+
+        public virtual Task DeleteAsync<T>(IEnumerable<T> entity, CancellationToken cancellationToken) where T : class
+        {
+            dbContext.Set<T>().RemoveRange(entity);
+            return Task.CompletedTask;
+        }
+
+        public async Task<int> SaveAsync(CancellationToken cancellationToken = default)
+        {
+            var affecterRecords = await dbContext.SaveChangesAsync(cancellationToken);
+            return affecterRecords;
+        }
+
+        public virtual Task UpdateAsync<T>(T entity, CancellationToken cancellationToken) where T : class
+        {
+            dbContext.Update(entity);
+            return Task.CompletedTask;
+        }
+
+        public virtual Task UpdateAsync<T>(IEnumerable<T> entity, CancellationToken cancellationToken) where T : class
+        {
+            dbContext.UpdateRange(entity);
+            return Task.CompletedTask;
+        }
         public async Task<List<ProductView>> LoadAllProduct(CancellationToken cancellation = default)
         {
             return await dbContext.Set<Product>()

@@ -7,6 +7,7 @@ using BDH.Models;
 using BDH.Models.Views;
 using BDH.Services;
 using Microsoft.AspNetCore.Mvc;
+using WebBDH.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -16,28 +17,15 @@ namespace WebBDH.Controllers.Admin
     [ApiController]
     public class MatDongHosController : ControllerBase
     {
-        private IService _service;
+        private IQueryServices _service;
 
-        public MatDongHosController(IService service)
+        public MatDongHosController(IQueryServices queryService)
         {
-            _service = service;
-        }
-        // GET: api/<MatDongHosController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<MatDongHosController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
+            _service = queryService;
         }
 
         [HttpPost]
-        public async Task<JsonResult> LoadMatDongHo(QueryModel<MatDongHoQuery> query, CancellationToken cancelllationToken)
+        public async Task<JsonResult> Search(QueryModel<MatDongHoQuery> query, CancellationToken cancelllationToken)
         {
             var data = await _service.LoadListMatDH(query, cancelllationToken);
             return new JsonResult(new
@@ -47,16 +35,54 @@ namespace WebBDH.Controllers.Admin
             });
         }
 
-        // PUT api/<MatDongHosController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPost]
+        public async Task<JsonResult> Create(CreateModel<MatDongHo> query, CancellationToken cancelllationToken)
         {
+            SetAddNew(query);
+            await _service.AddAsync(query.Entity,cancelllationToken);
+            var count = await _service.SaveAsync(cancelllationToken);
+            return new JsonResult(new
+            {
+                Success = count > 0,
+                Entity = query.Entity
+            });
+        }
+        [HttpPost]
+        public async Task<JsonResult> Update(UpdateModel<MatDongHo> query, CancellationToken cancelllationToken)
+        {
+            SetUpdate(query);
+            await _service.UpdateAsync(query.Entity, cancelllationToken);
+            var count = await _service.SaveAsync(cancelllationToken);
+            return new JsonResult(new
+            {
+                Success = count > 0,
+                Entity = query.Entity
+            });
+        }
+        [HttpPost]
+        public async Task<JsonResult> Delete(CreateModel<MatDongHo> query, CancellationToken cancelllationToken)
+        {
+            await _service.DeleteAsync(query.Entity, cancelllationToken);
+            var count = await _service.SaveAsync(cancelllationToken);
+            return new JsonResult(new
+            {
+                Success = count > 0,
+                Entity = query.Entity
+            });
         }
 
-        // DELETE api/<MatDongHosController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        private void SetUpdate(UpdateModel<MatDongHo> query)
         {
+            query.Entity.LastUpdateBy = "admin";
+            query.Entity.LastUpdateTime = DateTime.Now;
         }
+        private void SetAddNew(CreateModel<MatDongHo> query)
+        {
+            query.Entity.LastUpdateBy = "admin";
+            query.Entity.LastUpdateTime = DateTime.Now;
+            query.Entity.CreateBy = "admin";
+            query.Entity.CreateTime = DateTime.Now;
+        }
+
     }
 }

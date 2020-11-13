@@ -31,7 +31,7 @@ namespace WebBDH
             services.AddMvc(option => option.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddControllers();
             services.AddDbContext<BDHContext>(options => options.UseSqlServer(Configuration.GetConnectionString("BDHContext")));
-            services.AddScoped<IService, Services>();
+            services.AddTransient<IQueryServices, QueryServices>();
             services.AddControllers();
         }
 
