@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "h+yzoI10sXXSOUjC9efsDd8RdyARIyU2w98SuiT5QZI5MzjWzzpvs1EyZhJWXgTp9lOoHRuBEM8sl9ZG6FylxQ==",
+  "dgSpecHash": "rkUj1VHjurCI3Ce/tTmhqPWCnnQVBpNtWffblyp1eWUl86FWk+LXd8wjELcvxMGstiVJqluBQ6X7/nvmuq7d6Q==",
   "success": true,
   "projectFilePath": "E:\\LearnAngular\\WebBDH\\WebBDH\\WebBDH\\WebBDH.csproj",
   "expectedPackageFiles": [
@@ -131,7 +131,8 @@
     "C:\\Users\\tuanHoan\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\tuanHoan\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\tuanHoan\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\tuanHoan\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    "C:\\Users\\tuanHoan\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
+    "C:\\Users\\tuanHoan\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.2\\microsoft.aspnetcore.app.ref.3.1.2.nupkg.sha512"
   ],
   "logs": []
 }
