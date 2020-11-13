@@ -56,6 +56,15 @@ namespace BDH.Services.EF
                )
                .Select(x => new ImageView(x)).PageResultAsync(model.Page, model.PageSize, cancellation);
         }
+        public async Task<IPagedList<LoaiDayView>> LoadListLoaiDay(QueryModel<LoaiDayQuery> model, CancellationToken cancellation = default)
+        {
+            return await dbContext.Set<LoaiDay>()
+               .AsNoTracking()
+               .Where(e => (model.Entity.Name == default || e.Name.Contains(model.Entity.Name)) &&
+                (model.Entity.Description == default || e.Description.Contains(model.Entity.Description))
+               )
+               .Select(x => new LoaiDayView(x)).PageResultAsync(model.Page, model.PageSize, cancellation);
+        }
         public async Task<IPagedList<ProductView>> LoadListProduct(QueryModel<ProductQuery> model, CancellationToken cancellation = default)
         {
             return await dbContext.Set<Product>()

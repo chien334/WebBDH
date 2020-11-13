@@ -18,5 +18,6 @@ namespace BDH.Services
         Task<List<ProductView>> LoadAllProduct(CancellationToken cancellation = default);
         Task<IPagedList<AccountView>> LoadListAccount(QueryModel<AccountQuery> model, CancellationToken cancellation = default);
         Task<IPagedList<ImageView>> LoadImage(QueryModel<ImageQuery> model, CancellationToken cancellation = default);
+        Task<IPagedList<LoaiDayView>> LoadListLoaiDay(QueryModel<LoaiDayQuery> model, CancellationToken cancellation = default);
     }
 }
