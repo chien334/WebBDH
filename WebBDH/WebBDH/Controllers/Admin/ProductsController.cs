@@ -60,6 +60,7 @@ namespace WebBDH.Controllers.Admin
         //[HttpPost]
         //public async Task<JsonResult> MarkDelete(CreateModel<Product> query, CancellationToken cancelllationToken)
         //{
+        //    SetUpdate(query);
         //    query.Entity.Deleted = true;
         //    await _service.UpdateAsync(query.Entity, cancelllationToken);
         //    var count = await _service.SaveAsync(cancelllationToken);

@@ -29,6 +29,7 @@ const routes: Routes = [
     NzDatePickerModule,
     NzFormModule,
     NzAvatarModule,
+    NzButtonModule
   ],
   declarations: [
 
