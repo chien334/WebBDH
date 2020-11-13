@@ -7,3 +7,12 @@ C:\Users\lequy\Desktop\WebBDH\WebBDH\BDH\obj\Debug\netstandard2.0\BDH.AssemblyIn
 C:\Users\lequy\Desktop\WebBDH\WebBDH\BDH\obj\Debug\netstandard2.0\BDH.dll
 C:\Users\lequy\Desktop\WebBDH\WebBDH\BDH\obj\Debug\netstandard2.0\BDH.pdb
 C:\Users\lequy\Desktop\WebBDH\WebBDH\BDH\obj\Debug\netstandard2.0\BDH.csproj.CoreCompileInputs.cache
+E:\LearnAngular\WebBDH\WebBDH\BDH\bin\Debug\netstandard2.0\BDH.deps.json
+E:\LearnAngular\WebBDH\WebBDH\BDH\bin\Debug\netstandard2.0\BDH.dll
+E:\LearnAngular\WebBDH\WebBDH\BDH\bin\Debug\netstandard2.0\BDH.pdb
+E:\LearnAngular\WebBDH\WebBDH\BDH\obj\Debug\netstandard2.0\BDH.csprojAssemblyReference.cache
+E:\LearnAngular\WebBDH\WebBDH\BDH\obj\Debug\netstandard2.0\BDH.AssemblyInfoInputs.cache
+E:\LearnAngular\WebBDH\WebBDH\BDH\obj\Debug\netstandard2.0\BDH.AssemblyInfo.cs
+E:\LearnAngular\WebBDH\WebBDH\BDH\obj\Debug\netstandard2.0\BDH.csproj.CoreCompileInputs.cache
+E:\LearnAngular\WebBDH\WebBDH\BDH\obj\Debug\netstandard2.0\BDH.dll
+E:\LearnAngular\WebBDH\WebBDH\BDH\obj\Debug\netstandard2.0\BDH.pdb

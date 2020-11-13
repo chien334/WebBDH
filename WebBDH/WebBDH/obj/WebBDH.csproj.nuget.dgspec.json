@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lequy\\Desktop\\WebBDH\\WebBDH\\WebBDH\\WebBDH.csproj": {}
+    "E:\\LearnAngular\\WebBDH\\WebBDH\\WebBDH\\WebBDH.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lequy\\Desktop\\WebBDH\\WebBDH\\BDH\\BDH.csproj": {
+    "E:\\LearnAngular\\WebBDH\\WebBDH\\BDH\\BDH.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lequy\\Desktop\\WebBDH\\WebBDH\\BDH\\BDH.csproj",
+        "projectUniqueName": "E:\\LearnAngular\\WebBDH\\WebBDH\\BDH\\BDH.csproj",
         "projectName": "BDH",
-        "projectPath": "C:\\Users\\lequy\\Desktop\\WebBDH\\WebBDH\\BDH\\BDH.csproj",
-        "packagesPath": "C:\\Users\\lequy\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lequy\\Desktop\\WebBDH\\WebBDH\\BDH\\obj\\",
+        "projectPath": "E:\\LearnAngular\\WebBDH\\WebBDH\\BDH\\BDH.csproj",
+        "packagesPath": "C:\\Users\\tuanHoan\\.nuget\\packages\\",
+        "outputPath": "E:\\LearnAngular\\WebBDH\\WebBDH\\BDH\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\lequy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tuanHoan\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -71,17 +71,17 @@
         }
       }
     },
-    "C:\\Users\\lequy\\Desktop\\WebBDH\\WebBDH\\WebBDH\\WebBDH.csproj": {
+    "E:\\LearnAngular\\WebBDH\\WebBDH\\WebBDH\\WebBDH.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lequy\\Desktop\\WebBDH\\WebBDH\\WebBDH\\WebBDH.csproj",
+        "projectUniqueName": "E:\\LearnAngular\\WebBDH\\WebBDH\\WebBDH\\WebBDH.csproj",
         "projectName": "WebBDH",
-        "projectPath": "C:\\Users\\lequy\\Desktop\\WebBDH\\WebBDH\\WebBDH\\WebBDH.csproj",
-        "packagesPath": "C:\\Users\\lequy\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lequy\\Desktop\\WebBDH\\WebBDH\\WebBDH\\obj\\",
+        "projectPath": "E:\\LearnAngular\\WebBDH\\WebBDH\\WebBDH\\WebBDH.csproj",
+        "packagesPath": "C:\\Users\\tuanHoan\\.nuget\\packages\\",
+        "outputPath": "E:\\LearnAngular\\WebBDH\\WebBDH\\WebBDH\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\lequy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tuanHoan\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -94,8 +94,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\lequy\\Desktop\\WebBDH\\WebBDH\\BDH\\BDH.csproj": {
-                "projectPath": "C:\\Users\\lequy\\Desktop\\WebBDH\\WebBDH\\BDH\\BDH.csproj"
+              "E:\\LearnAngular\\WebBDH\\WebBDH\\BDH\\BDH.csproj": {
+                "projectPath": "E:\\LearnAngular\\WebBDH\\WebBDH\\BDH\\BDH.csproj"
               }
             }
           }

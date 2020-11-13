@@ -1,7 +1,7 @@
 ﻿using BDH.Data;
 using BDH.Data.EFService;
 using BDH.Models;
-using BDH.Models.Views;
+using BDH.Models.Queries;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -80,6 +80,16 @@ namespace BDH.Services.EF
                 (model.Entity.Description == default || e.Description.Contains(model.Entity.Description))
                )
                .Select(x => new MatDongHoView(x)).PageResultAsync(model.Page, model.PageSize, cancellation);
+        }
+
+        public async Task<IPagedList<ImageView>> LoadListImage(QueryModel<ImageQuery> model, CancellationToken cancellation = default)
+        {
+            return await dbContext.Set<Image>()
+               .AsNoTracking()
+               .Where(e => (model.Entity.Path == default || e.Path.Contains(model.Entity.Path)) &&
+                (model.Entity.IdProduct == default)
+               )
+               .Select(x => new ImageView(x)).PageResultAsync(model.Page, model.PageSize, cancellation);
         }
 
         public async Task<IPagedList<ProductView>> LoadListProduct(QueryModel<ProductQuery> model, CancellationToken cancellation = default)
