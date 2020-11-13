@@ -1,4 +1,5 @@
 ﻿using BDH.Models;
+using BDH.Models.Queries;
 using BDH.Models.Views;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -64,6 +65,15 @@ namespace BDH.Services.EF
                 (model.Entity.Description == default || e.Description.Contains(model.Entity.Description))
                )
                .Select(x => new LoaiDayView(x)).PageResultAsync(model.Page, model.PageSize, cancellation);
+        }
+        public async Task<IPagedList<BrandView>> LoadListBrand(QueryModel<BrandQuery> model, CancellationToken cancellation = default)
+        {
+            return await dbContext.Set<Brand>()
+               .AsNoTracking()
+               .Where(e => (model.Entity.Name == default || e.Name.Contains(model.Entity.Name)) &&
+                (model.Entity.Description == default || e.Description.Contains(model.Entity.Description))
+               )
+               .Select(x => new BrandView(x)).PageResultAsync(model.Page, model.PageSize, cancellation);
         }
         public async Task<IPagedList<ProductView>> LoadListProduct(QueryModel<ProductQuery> model, CancellationToken cancellation = default)
         {

@@ -12,7 +12,7 @@ namespace BDH.Models.Queries
         public string Description { get; set; }
         public BrandView() { }
 
-        public BrandView(Brand e )
+        public BrandView(Brand e)
         {
             Id = e.Id;
             Name = e.Name;
