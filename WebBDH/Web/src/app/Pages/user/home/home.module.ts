@@ -14,6 +14,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { HomeComponent } from './home.component';
+import { NgZorroAntdModule } from 'src/app/ng-zorro-antd.module';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -24,18 +25,14 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     ReactiveFormsModule,
-    NzIconModule,
-    NzCardModule,
-    NzDatePickerModule,
-    NzFormModule,
-    NzAvatarModule,
-    NzButtonModule
+    NgZorroAntdModule
   ],
   declarations: [
-
+    HomeComponent
   ],
   exports: [
     RouterModule,
+    HomeComponent
   ]
 })
 export class HomeModule { }
