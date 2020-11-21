@@ -7,7 +7,7 @@ import { AdminComponent } from './admin.component';
 import { BrandComponent } from './brand/brand.component';
 import { ProductComponent } from './product/product.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { Ng2CompleterModule } from "ng2-completer";
+import { Ng2CompleterModule } from 'ng2-completer';
 const routes: Routes = [
     {
         path: 'admin',
