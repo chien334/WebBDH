@@ -14,7 +14,6 @@ const routes: Routes = [
         CommonModule,
         NgZorroAntdModule,
         RouterModule.forChild(routes),
-
     ],
     declarations: [
         BrandComponent
