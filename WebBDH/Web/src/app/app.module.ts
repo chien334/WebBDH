@@ -15,6 +15,7 @@ import { AdminModule } from './Pages/admin/admin.module';
 import { Ng2CompleterModule } from 'ng2-completer';
 import { DetailModule } from './Pages/user/detail-product/detail.module';
 import { HomeModule } from './Pages/user/home/home.module';
+import { UserModule } from './Pages/user/user.module';
 
 registerLocaleData(en);
 
@@ -32,8 +33,7 @@ registerLocaleData(en);
     BrowserAnimationsModule,
     NgZorroAntdModule,
     AdminModule,
-    DetailModule,
-    HomeModule,
+    UserModule,
     Ng2CompleterModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],

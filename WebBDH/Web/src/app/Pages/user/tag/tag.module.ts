@@ -1,10 +1,10 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { HomeComponent } from './home.component';
 import { NgZorroAntdModule } from 'src/app/ng-zorro-antd.module';
+import { TagComponent } from './tag.component';
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: TagComponent },
 ];
 
 @NgModule({
@@ -20,4 +20,4 @@ const routes: Routes = [
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class HomeModule { }
+export class TagModule { }
