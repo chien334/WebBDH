@@ -12,6 +12,7 @@ import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { NgZorroAntdModule } from './ng-zorro-antd.module';
 import { AdminModule } from './Pages/admin/admin.module';
+import { Ng2CompleterModule } from 'ng2-completer';
 
 registerLocaleData(en);
 
@@ -27,7 +28,8 @@ registerLocaleData(en);
     HttpClientModule,
     BrowserAnimationsModule,
     NgZorroAntdModule,
-    AdminModule
+    AdminModule,
+    Ng2CompleterModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],

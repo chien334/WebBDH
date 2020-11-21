@@ -135,5 +135,8 @@
       }
     }
   },
-  "defaultProject": "Web"
+  "defaultProject": "Web",
+  "cli": {
+    "analytics": "a6d3ec08-bb3a-43eb-ab17-efae4dd1f1dc"
+  }
 }
