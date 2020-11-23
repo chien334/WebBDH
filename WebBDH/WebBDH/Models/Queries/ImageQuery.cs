@@ -5,11 +5,11 @@ using WebBDH.Models;
 
 namespace BDH.Models.Queries
 {
-    public partial class BrandQuery
+    public partial class ImageQuery
     {
         public long Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public string Path { get; set; } 
+        public long? IdProduct { get; set; }
 
     }
 }

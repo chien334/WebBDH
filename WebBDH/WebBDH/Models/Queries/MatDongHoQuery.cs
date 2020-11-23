@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using WebBDH.Models;
 
-namespace BDH.Models.Views
+namespace BDH.Models.Queries
 {
     public partial class MatDongHoQuery
     {

@@ -15,19 +15,19 @@ namespace WebBDH.Controllers.Admin
 {
     [Route("/admin/api/[controller]/[action]")]
     [ApiController]
-    public class MatDongHosController : ControllerBase
+    public class BrandController : ControllerBase
     {
         private IQueryServices _service;
 
-        public MatDongHosController(IQueryServices queryService)
+        public BrandController(IQueryServices queryService)
         {
             _service = queryService;
         }
 
         [HttpPost]
-        public async Task<JsonResult> Search(QueryModel<MatDongHoQuery> query, CancellationToken cancelllationToken)
+        public async Task<JsonResult> Search(QueryModel<BrandQuery> query, CancellationToken cancelllationToken)
         {
-            var data = await _service.LoadListMatDH(query, cancelllationToken);
+            var data = await _service.LoadListBrand(query, cancelllationToken);
             return new JsonResult(new
             {
                 Items = data.ToArray(),
@@ -36,7 +36,7 @@ namespace WebBDH.Controllers.Admin
         }
 
         [HttpPost]
-        public async Task<JsonResult> Create(CreateModel<MatDongHo> query, CancellationToken cancelllationToken)
+        public async Task<JsonResult> Create(CreateModel<Brand> query, CancellationToken cancelllationToken)
         {
             SetAddNew(query);
             await _service.AddAsync(query.Entity,cancelllationToken);
@@ -48,7 +48,7 @@ namespace WebBDH.Controllers.Admin
             });
         }
         [HttpPost]
-        public async Task<JsonResult> Update(UpdateModel<MatDongHo> query, CancellationToken cancelllationToken)
+        public async Task<JsonResult> Update(UpdateModel<Brand> query, CancellationToken cancelllationToken)
         {
             SetUpdate(query);
             await _service.UpdateAsync(query.Entity, cancelllationToken);
@@ -60,7 +60,7 @@ namespace WebBDH.Controllers.Admin
             });
         }
         [HttpPost]
-        public async Task<JsonResult> Delete(CreateModel<MatDongHo> query, CancellationToken cancelllationToken)
+        public async Task<JsonResult> Delete(CreateModel<Brand> query, CancellationToken cancelllationToken)
         {
             await _service.DeleteAsync(query.Entity, cancelllationToken);
             var count = await _service.SaveAsync(cancelllationToken);
@@ -72,12 +72,12 @@ namespace WebBDH.Controllers.Admin
         }
 
 
-        private void SetUpdate(UpdateModel<MatDongHo> query)
+        private void SetUpdate(UpdateModel<Brand> query)
         {
             query.Entity.LastUpdateBy = "admin";
             query.Entity.LastUpdateTime = DateTime.Now;
         } 
-        private void SetAddNew(CreateModel<MatDongHo> query)
+        private void SetAddNew(CreateModel<Brand> query)
         {
             query.Entity.LastUpdateBy = "admin";
             query.Entity.LastUpdateTime = DateTime.Now;
