@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using BDH.Models;
-using BDH.Models.Queries;
+using BDH.Models.Views;
 using BDH.Services;
 using Microsoft.AspNetCore.Mvc;
 using WebBDH.Models;
@@ -71,12 +71,11 @@ namespace WebBDH.Controllers.Admin
             });
         }
 
-
         private void SetUpdate(UpdateModel<MatDongHo> query)
         {
             query.Entity.LastUpdateBy = "admin";
             query.Entity.LastUpdateTime = DateTime.Now;
-        } 
+        }
         private void SetAddNew(CreateModel<MatDongHo> query)
         {
             query.Entity.LastUpdateBy = "admin";

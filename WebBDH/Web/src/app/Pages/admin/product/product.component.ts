@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Ng2SmartTableComponent } from 'ng2-smart-table';
 
 @Component({
@@ -6,8 +6,7 @@ import { Ng2SmartTableComponent } from 'ng2-smart-table';
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.less']
 })
-export class ProductComponent implements OnChanges, OnInit, AfterViewInit {
-
+export class ProductComponent {
   @ViewChild('ng2table') table: Ng2SmartTableComponent;
   defaultSettings = {
     mode: 'inline',
@@ -84,12 +83,7 @@ export class ProductComponent implements OnChanges, OnInit, AfterViewInit {
       email: 'Rey.Padberg@rosamond.biz'
     }
   ];
-  ngAfterViewInit(): void {
-  }
-  ngOnInit(): void {
-  }
-  ngOnChanges(changes: SimpleChanges): void {
-  }
   createDataSource(): any {
+    throw new Error('Method not implemented.');
   }
 }

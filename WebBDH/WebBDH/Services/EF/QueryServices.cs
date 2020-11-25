@@ -1,7 +1,7 @@
 ﻿using BDH.Data;
 using BDH.Data.EFService;
 using BDH.Models;
-using BDH.Models.Queries;
+using BDH.Models.Views;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System;
@@ -86,36 +86,6 @@ namespace BDH.Services.EF
                .Select(x => new MatDongHoView(x)).PageResultAsync(model.Page, model.PageSize, cancellation);
         }
 
-        public async Task<IPagedList<ImageView>> LoadListImage(QueryModel<ImageQuery> model, CancellationToken cancellation = default)
-        {
-            return await dbContext.Set<Image>()
-               .AsNoTracking()
-               .Where(e => (model.Entity.Path == default || e.Path.Contains(model.Entity.Path)) &&
-                (model.Entity.IdProduct == default)
-               )
-               .Select(x => new ImageView(x)).PageResultAsync(model.Page, model.PageSize, cancellation);
-        }
-        public async Task<IPagedList<AccountView>> LoadListAccount(QueryModel<AccountQuery> model, CancellationToken cancellation = default)
-        {
-            return await dbContext.Set<AccountAdmin>()
-               .AsNoTracking()
-               .Where(e => (model.Entity.UserName == default || e.UserName.Contains(model.Entity.UserName)) &&
-                (model.Entity.FirstName == default || e.FirstName.Contains(model.Entity.FirstName)) &&
-                (model.Entity.LastName == default || e.LastName.Contains(model.Entity.LastName)) &&
-                (model.Entity.Email == default || e.Email.Contains(model.Entity.Email)) &&
-                (model.Entity.Phone == default || e.Phone.Contains(model.Entity.Phone))
-               )
-               .Select(x => new AccountView(x)).PageResultAsync(model.Page, model.PageSize, cancellation);
-        }
-        public async Task<IPagedList<BrandView>> LoadListBrand(QueryModel<BrandQuery> model, CancellationToken cancellation = default)
-        {
-            return await dbContext.Set<Brand>()
-               .AsNoTracking()
-               .Where(e => (model.Entity.Name == default || e.Name.Contains(model.Entity.Name)) &&
-                (model.Entity.Description == default || e.Description.Contains(model.Entity.Description))
-               )
-               .Select(x => new BrandView(x)).PageResultAsync(model.Page, model.PageSize, cancellation);
-        }
         public async Task<IPagedList<ProductView>> LoadListProduct(QueryModel<ProductQuery> model, CancellationToken cancellation = default)
         {
             return await dbContext.Set<Product>()

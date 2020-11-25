@@ -9,6 +9,13 @@ import { UserComponent } from './user.component';
 import { DetailModule } from './detail-product/detail.module';
 import { HomeModule } from './home/home.module';
 import { TagComponent } from './tag/tag.component';
+import { Component } from '@angular/core';
+import { NzAffixModule } from 'ng-zorro-antd/affix';
+import { NzStatisticModule } from 'ng-zorro-antd/statistic';
+import { ItemComponent } from './item/item.component';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzCardModule } from 'ng-zorro-antd/card';
+
 const routes: Routes = [
   {
     path: '',
@@ -32,7 +39,8 @@ const routes: Routes = [
     UserComponent,
     HomeComponent,
     DetailComponent,
-    TagComponent
+    TagComponent,
+    ItemComponent
   ],
   exports: [
     RouterModule,
