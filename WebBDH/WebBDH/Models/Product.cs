@@ -7,9 +7,7 @@ namespace WebBDH.Models
     {
         public Product()
         {
-            CartItem = new HashSet<CartItem>();
             Image = new HashSet<Image>();
-            OrderItem = new HashSet<OrderItem>();
         }
 
         public long Id { get; set; }
@@ -30,8 +28,6 @@ namespace WebBDH.Models
         public virtual Brand IdBrandNavigation { get; set; }
         public virtual LoaiDay IdLoaiDayNavigation { get; set; }
         public virtual MatDongHo IdMatDhNavigation { get; set; }
-        public virtual ICollection<CartItem> CartItem { get; set; }
         public virtual ICollection<Image> Image { get; set; }
-        public virtual ICollection<OrderItem> OrderItem { get; set; }
     }
 }

@@ -1,9 +1,11 @@
 
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-card',
-  template: ``
+  selector: 'app-home',
+  template : ``,
+  styles: [``]
 })
 export class CardComponent {
+    isCollapsed = false;
 }
