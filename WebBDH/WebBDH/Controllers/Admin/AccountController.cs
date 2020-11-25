@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using BDH.Models;
 using BDH.Models.Queries;
 using BDH.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebBDH.Models;
 
@@ -13,9 +14,10 @@ using WebBDH.Models;
 
 namespace WebBDH.Controllers.Admin
 {
+    
     [Route("/admin/api/[controller]/[action]")]
     [ApiController]
-    public class AccountController : ControllerBase
+    public partial class AccountController : ControllerBase
     {
         private IQueryServices _service;
 
@@ -23,7 +25,7 @@ namespace WebBDH.Controllers.Admin
         {
             _service = queryService;
         }
-
+        [Authorize]
         [HttpPost]
         public async Task<JsonResult> Search(QueryModel<AccountQuery> query, CancellationToken cancelllationToken)
         {
@@ -34,7 +36,7 @@ namespace WebBDH.Controllers.Admin
                 ToTalCount = data.TotalCount
             });
         }
-
+        [Authorize]
         [HttpPost]
         public async Task<JsonResult> Create(CreateModel<AccountAdmin> query, CancellationToken cancelllationToken)
         {
@@ -47,6 +49,7 @@ namespace WebBDH.Controllers.Admin
                 Entity = query.Entity
             });
         }
+        [Authorize]
         [HttpPost]
         public async Task<JsonResult> Update(UpdateModel<AccountAdmin> query, CancellationToken cancelllationToken)
         {
@@ -59,6 +62,7 @@ namespace WebBDH.Controllers.Admin
                 Entity = query.Entity
             });
         }
+        [Authorize]
         [HttpPost]
         public async Task<JsonResult> Delete(CreateModel<AccountAdmin> query, CancellationToken cancelllationToken)
         {

@@ -74,6 +74,9 @@ namespace WebBDH.Responsitories
                 entity.Property(e => e.UserName)
                     .HasMaxLength(80)
                     .IsUnicode(false);
+                entity.Property(e => e.Role)
+                    .HasMaxLength(10)
+                    .IsFixedLength();
             });
 
             modelBuilder.Entity<Brand>(entity =>

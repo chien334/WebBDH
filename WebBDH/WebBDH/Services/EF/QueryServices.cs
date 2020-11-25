@@ -3,12 +3,14 @@ using BDH.Data.EFService;
 using BDH.Models;
 using BDH.Models.Queries;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using WebBDH.Helpers;
 using WebBDH.Models;
 using WebBDH.Models.Queries;
 using WebBDH.Models.Views;
@@ -19,10 +21,12 @@ namespace BDH.Services.EF
     public partial class QueryServices : IQueryServices
     {
         BDHContext dbContext;
+        private readonly AppSettings _appSettings;
 
-        public QueryServices(BDHContext dbContext)
+        public QueryServices(BDHContext dbContext, IOptions<AppSettings> appSettings)
         {
             this.dbContext = dbContext;
+            _appSettings = appSettings.Value;
         }
         public virtual async Task AddAsync<T>(T entity, CancellationToken cancellationToken) where T : class
         {
