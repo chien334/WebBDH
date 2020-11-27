@@ -1,5 +1,6 @@
 <nz-layout class="app-layout">
-    <nz-sider class="menu-sidebar" nzCollapsible nzWidth="256px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+    <nz-sider class="menu-sidebar" nzCollapsible nzWidth="256px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed"
+        [nzTrigger]="null">
         <div class="sidebar-logo">
             <a href="https://ng.ant.design/" target="_blank">
                 <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
@@ -33,11 +34,11 @@
         <nz-header>
             <div class="app-header">
                 <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
-              <i class="trigger"
-                 nz-icon
-                 [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
-              ></i>
-          </span>
+                    <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
+                </span>
+                <span class="header-trigger">
+                    <a href class="nav-link" (click)="logout()">Logout</a>
+                </span>
             </div>
         </nz-header>
         <nz-content>

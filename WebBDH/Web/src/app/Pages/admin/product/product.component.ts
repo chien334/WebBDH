@@ -8,44 +8,6 @@ import { Ng2SmartTableComponent } from 'ng2-smart-table';
 })
 export class ProductComponent {
   @ViewChild('ng2table') table: Ng2SmartTableComponent;
-  defaultSettings = {
-    mode: 'inline',
-    selectMode: 'single',
-    hideHeader: false,
-    hideSubHeader: false,
-    actions: {
-      columnTitle: '',
-      add: false,
-      edit: false,
-      delete: false,
-      custom: [],
-      position: 'left',
-    },
-    add: {
-      addButtonContent: '<i class= "fa fa-plus"></i>',
-      createButtonContent: '<i class= "fa fa-plus"></i>',
-      cancelButtonContent: '<i class= "fa fa-plus"></i>',
-      confirmCreate: '<i class= "fa fa-plus"></i>',
-    },
-    edit: {
-      addButtonContent: '<i class= "fa fa-plus"></i>',
-      createButtonContent: '<i class= "fa fa-plus"></i>',
-      cancelButtonContent: '<i class= "fa fa-plus"></i>',
-      confirmCreate: '<i class= "fa fa-plus"></i>',
-    },
-    delete: {
-      addButtonContent: '<i class= "fa fa-plus"></i>',
-      createButtonContent: '<i class= "fa fa-plus"></i>',
-
-    },
-    noDataMessage: 'No data found',
-    columns: {},
-    pager: {
-      display: true,
-      perPage: 10,
-    },
-    rowClassFunction: () => '',
-  };
   dataSource: any = this.createDataSource();
   settings = {
     columns: {
@@ -84,6 +46,5 @@ export class ProductComponent {
     }
   ];
   createDataSource(): any {
-    throw new Error('Method not implemented.');
   }
 }

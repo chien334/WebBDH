@@ -8,6 +8,7 @@ import { BrandComponent } from './brand/brand.component';
 import { ProductComponent } from './product/product.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { Ng2CompleterModule } from 'ng2-completer';
+import { FormsModule } from '@angular/forms';
 const routes: Routes = [
     {
         path: 'admin',
@@ -26,7 +27,8 @@ const routes: Routes = [
         RouterModule.forChild(routes),
         ComponentModule,
         Ng2SmartTableModule,
-        Ng2CompleterModule
+        Ng2CompleterModule,
+        FormsModule
     ],
     declarations: [
         AdminComponent,

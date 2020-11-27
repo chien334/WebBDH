@@ -16,6 +16,9 @@ import { Ng2CompleterModule } from 'ng2-completer';
 import { DetailModule } from './Pages/user/detail-product/detail.module';
 import { HomeModule } from './Pages/user/home/home.module';
 import { UserModule } from './Pages/user/user.module';
+import { LoginUserModule } from './Pages/user/login-user/login-user.module';
+import { LoginAdminModule } from './Pages/admin/login-admin/login-admin.module';
+import { RegisterModule } from './Pages/user/register/register.module';
 
 registerLocaleData(en);
 
@@ -34,6 +37,9 @@ registerLocaleData(en);
     NgZorroAntdModule,
     AdminModule,
     UserModule,
+    LoginUserModule,
+    LoginAdminModule,
+    RegisterModule,
     Ng2CompleterModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],

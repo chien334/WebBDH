@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./tag.component.less']
 })
 export class TagComponent {
-
+  data = [];
+  onSelect(){}
+  loadData(){}
 }

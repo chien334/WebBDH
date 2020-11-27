@@ -18,9 +18,9 @@
                             <a routerLink="home">NAM</a>
                         </li>
                         <li nz-menu-item><a routerLink="home">NỮ</a></li>
-                        <li nz-menu-item><a routerLink="home" nz-dropdown [nzDropdownMenu]="menu"> G-SHOCK
+                        <li nz-menu-item><a routerLink="home" nz-dropdown [nzDropdownMenu]="menu1"> G-SHOCK
                 <i nz-icon nzType="down"></i></a>
-                            <nz-dropdown-menu #menu="nzDropdownMenu">
+                            <nz-dropdown-menu #menu1="nzDropdownMenu">
                                 <ul nz-menu nzSelectable>
                                     <li nz-menu-item>1st menu item</li>
                                     <li nz-menu-item>2nd menu item</li>
@@ -30,8 +30,8 @@
                             </nz-dropdown-menu>
                         </li>
                         <li nz-menu-item>
-                            <a routerLink="home" nz-dropdown [nzDropdownMenu]="menu">EDIFICE<i nz-icon nzType="down"></i> </a>
-                            <nz-dropdown-menu #menu="nzDropdownMenu">
+                            <a routerLink="home" nz-dropdown [nzDropdownMenu]="menu2">EDIFICE<i nz-icon nzType="down"></i> </a>
+                            <nz-dropdown-menu #menu2="nzDropdownMenu">
                                 <ul nz-menu nzSelectable>
                                     <li nz-menu-item>1st menu item</li>
                                     <li nz-menu-item>2nd menu item</li>
@@ -42,8 +42,8 @@
                         </li>
                         <li nz-menu-item><a routerLink="home">BABY-G</a></li>
                         <li nz-menu-item>
-                            <a routerLink="home" nz-dropdown [nzDropdownMenu]="menu"> CASIO<i nz-icon nzType="down"></i></a>
-                            <nz-dropdown-menu #menu="nzDropdownMenu">
+                            <a routerLink="home" nz-dropdown [nzDropdownMenu]="menu3"> CASIO<i nz-icon nzType="down"></i></a>
+                            <nz-dropdown-menu #menu3="nzDropdownMenu">
                                 <ul nz-menu nzSelectable>
                                     <li nz-menu-item>1st menu item</li>
                                     <li nz-menu-item>2nd menu item</li>
@@ -53,8 +53,10 @@
                             </nz-dropdown-menu>
                         </li>
                         <li nz-menu-item><a routerLink="home">SHOWROOM</a></li>
-                        <li nz-menu-item><a routerLink="home" nz-border-primary>Giỏ hàng   <i style="font-size:x-large;"nz-icon  nzType="shopping-cart" nzTheme="outline"></i></a>
+                        <li nz-menu-item><a routerLink="home" nz-border-primary>Giỏ hàng <i style="font-size:x-large;"nz-icon  nzType="shopping-cart" nzTheme="outline"></i></a>
                         </li>
+                        <li nz-menu-item *ngIf="isLoggedIn" (click)="logout()"><a routerLink="home">Logout</a></li>
+                        <li nz-menu-item *ngIf="!isLoggedIn" (click)="login()"><a routerLink="home">Login</a></li>
                     </ul>
                 </div>
             </div>
