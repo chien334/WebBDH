@@ -1,7 +1,6 @@
 ﻿using BDH.Data;
 using BDH.Models;
 using BDH.Models.Queries;
-using BDH.Models.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;

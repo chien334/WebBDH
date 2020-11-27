@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using BDH.Models;
-using BDH.Models.Views;
+using BDH.Models.Queries;
 using BDH.Services;
 using Microsoft.AspNetCore.Mvc;
 using WebBDH.Models;
