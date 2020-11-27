@@ -22,7 +22,7 @@ namespace BDH.Services.EF
 {
     public partial class QueryServices 
     {
-        public async Task<AccountView> Authenticate(string userName, string passWord)
+        public async Task<AccountView> AuthenticateAdmin(string userName, string passWord)
         {
             var user = dbContext.Set<AccountAdmin>()
                 .AsNoTracking()
@@ -48,6 +48,38 @@ namespace BDH.Services.EF
             var token = tokenHandler.CreateToken(tokenDescriptor);
             user.Role = tokenHandler.WriteToken(token);
             user.Password = null;
+            return await Task.FromResult(user);
+        }
+        public async Task<AccountUserView> AuthenticateUser(string userName, string passWord)
+        {
+            var user = dbContext.Set<UserAccount>()
+                .AsNoTracking()
+                .Where(x => x.UserName == userName && x.UserPassword == passWord)
+                .Select(x => new AccountUserView() { 
+                    UserName= x.UserName,
+                    LastName=x.LastName,
+                    FirstName= x.FirstName,
+                    Email=x.Email,
+                    Phone=x.Phone
+                 })
+                .FirstOrDefault();
+
+            if (user == null) return null;
+
+            // authentication successful so generate jwt token
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+                    new Claim(ClaimTypes.Name, user.UserName),
+                }),
+                Expires = DateTime.UtcNow.AddDays(7),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            user.Token = tokenHandler.WriteToken(token);
             return await Task.FromResult(user);
         }
     }

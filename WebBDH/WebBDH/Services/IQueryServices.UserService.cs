@@ -14,6 +14,7 @@ namespace BDH.Services
 {
     public partial interface IQueryServices
     {
-        Task<AccountView> Authenticate(string userName,string passWord);
+        Task<AccountView> AuthenticateAdmin(string userName,string passWord);
+        Task<AccountUserView> AuthenticateUser(string userName,string passWord);
     }
 }
