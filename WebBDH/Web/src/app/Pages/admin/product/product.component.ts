@@ -7,44 +7,16 @@ import { Ng2SmartTableComponent } from 'ng2-smart-table';
   styleUrls: ['./product.component.less']
 })
 export class ProductComponent {
-  @ViewChild('ng2table') table: Ng2SmartTableComponent;
-  dataSource: any = this.createDataSource();
-  settings = {
-    columns: {
-      id: {
-        title: 'ID'
-      },
-      name: {
-        title: 'Full Name'
-      },
-      username: {
-        title: 'User Name'
-      },
-      email: {
-        title: 'Email'
-      }
-    }
+  createApi = 'product/create';
+  editApi = 'product/update';
+  deleteApi = 'product/delete';
+  searchApi = 'product/search';
+  columns = {
+    name: {
+      title: 'Full Name'
+    },
+    description: {
+      title: 'Description'
+    },
   };
-  data = [
-    {
-      id: 1,
-      name: 'Leanne Graham',
-      username: 'Bret',
-      email: 'Sincere@april.biz'
-    },
-    {
-      id: 2,
-      name: 'Ervin Howell',
-      username: 'Antonette',
-      email: 'Shanna@melissa.tv'
-    },
-    {
-      id: 11,
-      name: 'Nicholas DuBuque',
-      username: 'Nicholas.Stanton',
-      email: 'Rey.Padberg@rosamond.biz'
-    }
-  ];
-  createDataSource(): any {
-  }
 }

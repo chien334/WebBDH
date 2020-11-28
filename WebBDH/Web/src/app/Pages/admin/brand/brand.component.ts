@@ -6,5 +6,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./brand.component.less']
 })
 export class BrandComponent {
-  title = 'Web';
+  createApi = 'Brand/create';
+  editApi = 'Brand/update';
+  deleteApi = 'Brand/delete';
+  searchApi = 'Brand/search';
+  columns = {
+    name: {
+      title: 'Full Name'
+    },
+    description: {
+      title: 'Description'
+    },
+  };
 }

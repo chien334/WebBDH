@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { ComponentModule } from 'src/app/Components/component.module';
 import { NgZorroAntdModule } from 'src/app/ng-zorro-antd.module';
 import { ProductComponent } from './product.component';
 
@@ -14,7 +15,8 @@ const routes: Routes = [
         CommonModule,
         NgZorroAntdModule,
         RouterModule.forChild(routes),
-        Ng2SmartTableModule
+        Ng2SmartTableModule,
+        ComponentModule
     ],
     declarations: [
         ProductComponent

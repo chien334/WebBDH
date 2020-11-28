@@ -28,6 +28,9 @@
                     </li>
                 </ul>
             </li>
+            <li nz-menu-item nzSelected nzMatchRoute nzMatchRouter>
+                <a href class="nav-link" (click)="logout()">Logout</a>
+            </li>
         </ul>
     </nz-sider>
     <nz-layout>
@@ -35,9 +38,6 @@
             <div class="app-header">
                 <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
                     <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
-                </span>
-                <span class="header-trigger">
-                    <a href class="nav-link" (click)="logout()">Logout</a>
                 </span>
             </div>
         </nz-header>
