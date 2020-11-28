@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
-    selector: 'app-list-card',
-    template: `
+  selector: 'app-list-card',
+  template: `
   <div class="row">
         <nz-list style="width:95%;padding-left:3%" [nzDataSource]="data" [nzRenderItem]="item"
-          [nzPagination]="pagination" [nzGrid]="{ gutter: 16 ,xs: 24, sm: 12, md: 12, lg: 12, xl: 8 }">
+          [nzPagination]="pagination" [nzGrid]="{ gutter: 10 ,xs: 24, sm: 12, md: 8, lg: 6, xl: 6 }">
           <ng-template #item let-item>
             <nz-list-item [nzContent]="nzContent">
               <ng-template #nzContent>
@@ -13,13 +14,14 @@ import { Component, Input } from '@angular/core';
                   <div>
                     <div class="card h-90">
                       <a routerLink="/chi-tiet-san-pham"><img class="card-img-top"
-                          src="data:image/jpeg;base64,{{item.image}}" alt=""></a>
-                      <div class="card-body">
+                          src="{{item.image}}" alt=""></a>
+                      <div class="card-body" style="text-align: center">
                         <h4 class="card-title">
                           <a (click)="onSelect(item)">Mã căn: {{item.maCanHo}}</a>
                         </h4>
-                        <h5>Giá: {{item.giacanHo}}</h5>
-                        <p class="card-text">Hướng nhà : {{item.huongNhin}}</p>
+                        <h5>{{item.giacanHo}}</h5>
+                        <p class="card-text">{{item.huongNhin}}</p>
+                        <button nz-button (click)="addProductTocard($event)">Thêm vào giỏ hành</button>
                       </div>
                     </div>
                   </div>
@@ -34,11 +36,25 @@ import { Component, Input } from '@angular/core';
         <!-- /.col-lg-9 -->
       </div>
 `,
-    styles: [``]
+  styles: [``]
 })
 export class ListCardComponent {
-    @Input() data: any;
-    total: any;
-    onSelect(event: any) { }
-    loadData(event: any) { }
+  @Input() data: any;
+  total: any;
+  mySubscription: any;
+  constructor(private router: Router) { }
+  onSelect(item: any) {
+    this.router.navigate(['/detail', item.maCanHo]);
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
+    this.mySubscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        // Trick the Router into believing it's last link wasn't previously loaded
+        this.router.navigated = false;
+      }
+    });
+  }
+  loadData(event: any) { }
+  addProductTocard() { }
 }
