@@ -137,7 +137,8 @@ import { IconModule } from '@ant-design/icons-angular';
     NzResizableModule,
     NzPipesModule,
     IconModule,
-    NzLayoutModule
+    NzLayoutModule,
+    NzPaginationModule 
   ]
 })
 export class NgZorroAntdModule {

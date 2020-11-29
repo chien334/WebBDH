@@ -9,6 +9,8 @@ import { ProductComponent } from './product/product.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { Ng2CompleterModule } from 'ng2-completer';
 import { FormsModule } from '@angular/forms';
+import { LoaiDayComponent } from './loai-day/loai-day.component';
+import { MatDongHoComponent } from './mat-dong-ho/mat-dong-ho.component';
 const routes: Routes = [
     {
         path: 'admin',
@@ -16,6 +18,8 @@ const routes: Routes = [
         children: [
             { path: 'product', component: ProductComponent },
             { path: 'brand', component: BrandComponent },
+            { path: 'mat-dong-ho', component: MatDongHoComponent },
+            { path: 'loai-day', component: LoaiDayComponent },
         ]
     }
 ];
@@ -34,12 +38,16 @@ const routes: Routes = [
         AdminComponent,
         ProductComponent,
         BrandComponent,
+        MatDongHoComponent,
+        LoaiDayComponent
     ],
     exports: [
         RouterModule,
         AdminComponent,
         ProductComponent,
-        BrandComponent
+        BrandComponent,
+        MatDongHoComponent,
+        LoaiDayComponent
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

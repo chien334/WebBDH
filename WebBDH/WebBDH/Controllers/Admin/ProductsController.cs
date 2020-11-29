@@ -7,6 +7,7 @@ using BDH.Models;
 using BDH.Services;
 using Microsoft.AspNetCore.Mvc;
 using WebBDH.Models;
+using WebBDH.Models.Queries;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -21,6 +22,17 @@ namespace WebBDH.Controllers.Admin
         public ProductsController(IQueryServices queryService)
         {
             _service = queryService;
+        }
+        [HttpPost]
+        public async Task<JsonResult> Search(QueryModel<ProductQuery> query, CancellationToken cancelllationToken)
+        {
+            var data = await _service.LoadProduct(query, cancelllationToken);
+            return new JsonResult(new
+            {
+                Success = data.Count() > 0 ? true : false,
+                Items = data.ToArray(),
+                ToTalCount = data.TotalCount
+            });
         }
         [HttpPost]
         public async Task<JsonResult> Create(CreateModel<Product> query, CancellationToken cancelllationToken)
@@ -57,19 +69,6 @@ namespace WebBDH.Controllers.Admin
                 Entity = query.Entity
             });
         }
-        //[HttpPost]
-        //public async Task<JsonResult> MarkDelete(CreateModel<Product> query, CancellationToken cancelllationToken)
-        //{
-        //    SetUpdate(query);
-        //    query.Entity.Deleted = true;
-        //    await _service.UpdateAsync(query.Entity, cancelllationToken);
-        //    var count = await _service.SaveAsync(cancelllationToken);
-        //    return new JsonResult(new
-        //    {
-        //        Success = count > 0,
-        //        Entity = query.Entity
-        //    });
-        //}
 
         private void SetUpdate(CreateModel<Product> query)
         {

@@ -14,13 +14,13 @@ import { NavigationEnd, Router } from '@angular/router';
                   <div>
                     <div class="card h-90">
                       <a routerLink="/chi-tiet-san-pham"><img class="card-img-top"
-                          src="{{item.image}}" alt=""></a>
+                          src="{{item.path}}" alt=""></a>
                       <div class="card-body" style="text-align: center">
                         <h4 class="card-title">
-                          <a (click)="onSelect(item)">Mã căn: {{item.maCanHo}}</a>
+                          <a (click)="onSelect(item)">{{item.name}}</a>
                         </h4>
-                        <h5>{{item.giacanHo}}</h5>
-                        <p class="card-text">{{item.huongNhin}}</p>
+                        <h5>{{item.price}}VND</h5>
+                        <h5 class="card-text">{{item.brand}}</h5>
                         <button nz-button (click)="addProductTocard($event)">Thêm vào giỏ hành</button>
                       </div>
                     </div>
@@ -40,7 +40,7 @@ import { NavigationEnd, Router } from '@angular/router';
 })
 export class ListCardComponent {
   @Input() data: any;
-  total: any;
+  total: 20;
   mySubscription: any;
   constructor(private router: Router) { }
   onSelect(item: any) {

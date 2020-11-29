@@ -10,6 +10,7 @@ namespace WebBDH.Responsitories
 {
     public partial class BDHContext
     {
+        [Obsolete]
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder)
         {
             modelBuilder.Query<ProductModel>().ToView("v_Product");

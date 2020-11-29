@@ -30,7 +30,7 @@ namespace WebBDH.Controllers.Admin
             var data = await _service.LoadListBrand(query, cancelllationToken);
             return new JsonResult(new
             {
-                Success=true,
+                Success=data.Count()>0?true:false,
                 Items = data.ToArray(),
                 ToTalCount = data.TotalCount
             });

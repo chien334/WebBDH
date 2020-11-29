@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './brand.component.html',
-  styleUrls: ['./brand.component.less']
+  templateUrl: './mat-dong-ho.component.html',
+  styleUrls: ['./mat-dong-ho.component.less']
 })
-export class BrandComponent {
-  createApi = 'Brand/create';
-  editApi = 'Brand/update';
-  deleteApi = 'Brand/delete';
-  searchApi = 'Brand/search';
+export class MatDongHoComponent {
+  createApi = 'matdonghos/create';
+  editApi = 'matdonghos/update';
+  deleteApi = 'matdonghos/delete';
+  searchApi = 'matdonghos/search';
   columns = {
     index: {
       title: 'sr_no',

@@ -30,6 +30,7 @@ namespace WebBDH.Controllers.User
             return new JsonResult( new
             {
                 Items=data.ToArray(),
+                Success= data.Count()>0?true:false,
                 ToTalCount= data.TotalCount
             });
         }

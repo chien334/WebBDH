@@ -31,9 +31,16 @@ export class AuthService {
 
   register(user): Observable<any> {
     return this.http.post(AUTH_API_USER + 'register', {
-      username: user.username,
-      email: user.email,
-      password: user.password
+      entity: {
+        userName: user.userName,
+        email: user.email,
+        userPassword: user.userPassword,
+        lastName: user.lastName,
+        firstName: user.firstName,
+        phone: user.phone,
+        sex: user.sex === 1 ? true : false,
+        delete: 0
+      }
     }, httpOptions);
   }
 }

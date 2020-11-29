@@ -17,7 +17,8 @@ namespace WebBDH.Models.ModelView
         public double? Weight { get; set; }
         public bool? Sex { get; set; }
         public string Brand { get; set; }
-
+        public string Path { get; set; }
+        
         public ProductModel()
         {
         }

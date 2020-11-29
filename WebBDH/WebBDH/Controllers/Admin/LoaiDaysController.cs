@@ -15,29 +15,29 @@ namespace WebBDH.Controllers.Admin
 {
     [Route("/admin/api/[controller]/[action]")]
     [ApiController]
-    public class MatDongHosController : ControllerBase
+    public class LoaiDaysController : ControllerBase
     {
         private IQueryServices _service;
 
-        public MatDongHosController(IQueryServices queryService)
+        public LoaiDaysController(IQueryServices queryService)
         {
             _service = queryService;
         }
 
         [HttpPost]
-        public async Task<JsonResult> Search(QueryModel<MatDongHoQuery> query, CancellationToken cancelllationToken)
+        public async Task<JsonResult> Search(QueryModel<LoaiDayQuery> query, CancellationToken cancelllationToken)
         {
-            var data = await _service.LoadListMatDH(query, cancelllationToken);
+            var data = await _service.LoadListLoaiDay(query, cancelllationToken);
             return new JsonResult(new
             {
-                Success = data.Count() > 0 ? true : false,
+                Success=data.Count()>0?true:false,
                 Items = data.ToArray(),
                 ToTalCount = data.TotalCount
             });
         }
 
         [HttpPost]
-        public async Task<JsonResult> Create(CreateModel<MatDongHo> query, CancellationToken cancelllationToken)
+        public async Task<JsonResult> Create(CreateModel<LoaiDay> query, CancellationToken cancelllationToken)
         {
             SetAddNew(query);
             await _service.AddAsync(query.Entity,cancelllationToken);
@@ -49,7 +49,7 @@ namespace WebBDH.Controllers.Admin
             });
         }
         [HttpPost]
-        public async Task<JsonResult> Update(UpdateModel<MatDongHo> query, CancellationToken cancelllationToken)
+        public async Task<JsonResult> Update(UpdateModel<LoaiDay> query, CancellationToken cancelllationToken)
         {
             SetUpdate(query);
             await _service.UpdateAsync(query.Entity, cancelllationToken);
@@ -61,7 +61,7 @@ namespace WebBDH.Controllers.Admin
             });
         }
         [HttpPost]
-        public async Task<JsonResult> Delete(CreateModel<MatDongHo> query, CancellationToken cancelllationToken)
+        public async Task<JsonResult> Delete(CreateModel<LoaiDay> query, CancellationToken cancelllationToken)
         {
             await _service.DeleteAsync(query.Entity, cancelllationToken);
             var count = await _service.SaveAsync(cancelllationToken);
@@ -72,12 +72,13 @@ namespace WebBDH.Controllers.Admin
             });
         }
 
-        private void SetUpdate(UpdateModel<MatDongHo> query)
+
+        private void SetUpdate(UpdateModel<LoaiDay> query)
         {
             query.Entity.LastUpdateBy = "admin";
             query.Entity.LastUpdateTime = DateTime.Now;
-        }
-        private void SetAddNew(CreateModel<MatDongHo> query)
+        } 
+        private void SetAddNew(CreateModel<LoaiDay> query)
         {
             query.Entity.LastUpdateBy = "admin";
             query.Entity.LastUpdateTime = DateTime.Now;
