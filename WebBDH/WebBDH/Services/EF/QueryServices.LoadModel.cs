@@ -14,6 +14,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using WebBDH.Helpers;
 using WebBDH.Models;
+using WebBDH.Models.ModelView;
 using WebBDH.Models.Queries;
 using WebBDH.Models.Views;
 using WebBDH.Responsitories;
@@ -57,6 +58,26 @@ namespace BDH.Services.EF
               )
               .Select(x=> new BrandView(x))
               .FirstOrDefaultAsync();
+        }
+        public async Task<DetailProductView> SearchModel(QueryModel<ProductQuery> model, CancellationToken cancellationToken)
+        {
+            return await dbContext.Set<ProductModel>()
+                .Where(e=>(model.Entity.Id == default || e.Id == model.Entity.Id) &&
+                      (model.Entity.Name == default || e.Name.Contains(model.Entity.Name))
+                      ).Select(x=> new DetailProductView() { 
+                          Id=x.Id,
+                          IdBrand=x.IdBrand,
+                          IdLoaiDay= x.IdLoaiDay,
+                          IdMatDh=x.IdMatDH,
+                          Name=x.Name,
+                          Description=x.Description,
+                          Price= x.Price,
+                          Color=x.Color,
+                          Sex=x.Sex,
+                          Weight=x.Weight,
+                          image= (dbContext.Set<Image>().Where(x=> x.IdProduct==model.Entity.Id).Select(x=> new ImageView(x)).ToList())
+                      })
+                      .FirstOrDefaultAsync();
         }
     }
 }

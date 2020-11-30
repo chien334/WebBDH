@@ -17,5 +17,6 @@ namespace BDH.Services
         Task<MatDongHoView> SearchModel(QueryModel<MatDongHoQuery> query,CancellationToken cancellationToken);
         Task<LoaiDayView> SearchModel(QueryModel<LoaiDayQuery> query, CancellationToken cancellationToken);
         Task<BrandView> SearchModel(QueryModel<BrandQuery> query, CancellationToken cancellationToken);
+        Task<DetailProductView> SearchModel(QueryModel<ProductQuery> query, CancellationToken cancellationToken);
     }
 }
