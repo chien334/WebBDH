@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BfD/d2aTujWvvj/9S2R/l0Nr8hnKlj7PvZj9iQ88KaxofiHvARiwzqKZrPBcF3BR/0bQxHZYg7+IhGSVTth9Mg==",
+  "dgSpecHash": "vwR98usQWV843cGfcfNHUi35KCvCPFwOUJcZIZKVhg5UoaeRFVE6pnlVKvL6EBkSkk3nndja0XWi3poc0Yi3GQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\lequy\\Desktop\\WebBDH\\WebBDH\\WebBDH\\WebBDH.csproj",
+  "projectFilePath": "D:\\DoAnThue\\WebBDH\\WebBDH\\WebBDH\\WebBDH.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lequy\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.1.9\\microsoft.aspnetcore.authentication.jwtbearer.3.1.9.nupkg.sha512",
     "C:\\Users\\lequy\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\3.1.9\\microsoft.aspnetcore.diagnostics.entityframeworkcore.3.1.9.nupkg.sha512",

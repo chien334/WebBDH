@@ -8,18 +8,17 @@ import { map } from 'rxjs/operators';
 @Component({
     selector: 'app-home',
     template: `
-  <select (ngModel)="selectedQuantity">
-    <option [value]="null" disabled>Select Country</option>
-    <option *ngFor="let country of options; index as i" [ngValue]="country.id">{{country.name}}</option>
+  <select nz-dropdown (ngModel)="selectedQuantity" (change)="updatedata($event)">
+    <option *ngFor="let country of options; index as i" [value]="country.id">{{country.name}}</option>
   </select>
   `,
     styles: [``]
 })
-export class MatDHDialogComponent extends DefaultEditor implements OnInit, ViewCell {
+export class BrandDialogComponent extends DefaultEditor implements OnInit, ViewCell {
     @Input() value: any;
     @Input() rowData: any;
-    URL = 'https://localhost:44399/admin/api/matdonghos/search';
-    selectedQuantity: 0;
+    URL = 'https://localhost:44399/admin/api/brand/search';
+    selectedQuantity: number;
     options = [];
     constructor(private http: HttpClient) {
         super();
@@ -37,6 +36,16 @@ export class MatDHDialogComponent extends DefaultEditor implements OnInit, ViewC
                 },
                 () => console.log('HTTP request complete.')
             );
+        const test = this.cell.getValue();
+        this.selectedQuantity = 1;
+        this.cell.newValue = Number(this.selectedQuantity);
+    }
+    updatedata(event: any): void {
+        this.selectedQuantity = event.target.value;
+        if (this.selectedQuantity === null) {
+            this.selectedQuantity = 1;
+        }
+        this.cell.newValue = Number(this.selectedQuantity);
     }
     postRequest(api: string, request: any): Observable<any> {
         return this.http.post(api, request, { observe: 'body' })

@@ -8,6 +8,7 @@ namespace BDH.Models.Queries
     public partial class ImageQuery
     {
         public long Id { get; set; }
+        public long Stt { get; set; }
         public string Path { get; set; } 
         public long? IdProduct { get; set; }
 

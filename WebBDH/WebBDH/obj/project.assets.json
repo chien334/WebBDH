@@ -6671,11 +6671,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\lequy\\Desktop\\WebBDH\\WebBDH\\WebBDH\\WebBDH.csproj",
+      "projectUniqueName": "D:\\DoAnThue\\WebBDH\\WebBDH\\WebBDH\\WebBDH.csproj",
       "projectName": "WebBDH",
-      "projectPath": "C:\\Users\\lequy\\Desktop\\WebBDH\\WebBDH\\WebBDH\\WebBDH.csproj",
+      "projectPath": "D:\\DoAnThue\\WebBDH\\WebBDH\\WebBDH\\WebBDH.csproj",
       "packagesPath": "C:\\Users\\lequy\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\lequy\\Desktop\\WebBDH\\WebBDH\\WebBDH\\obj\\",
+      "outputPath": "D:\\DoAnThue\\WebBDH\\WebBDH\\WebBDH\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\lequy\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6691,8 +6691,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\lequy\\Desktop\\WebBDH\\WebBDH\\BDH\\BDH.csproj": {
-              "projectPath": "C:\\Users\\lequy\\Desktop\\WebBDH\\WebBDH\\BDH\\BDH.csproj"
+            "D:\\DoAnThue\\WebBDH\\WebBDH\\BDH\\BDH.csproj": {
+              "projectPath": "D:\\DoAnThue\\WebBDH\\WebBDH\\BDH\\BDH.csproj"
             }
           }
         }

@@ -32,9 +32,10 @@ namespace WebBDH.Controllers.Admin
             var data = await _service.LoadListImage(query, cancelllationToken);
             return new JsonResult(new
             {
+                Success = data.Count() > 0 ? true : false,
                 Items = data.ToArray(),
                 ToTalCount = data.TotalCount
-            });
+            }) ;
         }
 
         [HttpPost]

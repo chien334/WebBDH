@@ -63,6 +63,7 @@ export class BDHTableComponent implements OnInit, AfterViewInit {
     const baseRequest = {
       entity: event.newData
     };
+    delete baseRequest.entity.id;
     this.postRequest(this.LINK_API + this.createApi, baseRequest)
       .subscribe(
         res => {
@@ -73,11 +74,12 @@ export class BDHTableComponent implements OnInit, AfterViewInit {
         },
         () => console.log('HTTP request complete.')
       );
+    this.getdataSource();
   }
 
   onSaveConfirm(event): void {
     const baseRequest = {
-      oldEntity: event.data,
+      oldEntity: {},
       entity: event.newData
     };
     this.postRequest(this.LINK_API + this.editApi, baseRequest)
@@ -90,6 +92,7 @@ export class BDHTableComponent implements OnInit, AfterViewInit {
         },
         () => console.log('HTTP request complete.')
       );
+    this.getdataSource();
   }
 
   onDeleteConfirm(event): void {
@@ -106,6 +109,7 @@ export class BDHTableComponent implements OnInit, AfterViewInit {
         },
         () => console.log('HTTP request complete.')
       );
+    this.getdataSource();
   }
   postRequest(api: string, request: any): Observable<any> {
     return this.http.post(api, request, { observe: 'body' })

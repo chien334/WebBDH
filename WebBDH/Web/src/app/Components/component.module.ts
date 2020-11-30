@@ -4,9 +4,14 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { NgZorroAntdModule } from 'src/app/ng-zorro-antd.module';
 import { BDHTableComponent } from './bdh-table/bdh-table.component';
+import { BrandDialogComponent } from './brand-dialog.component';
 import { CardComponent } from './card.component';
 import { CarouselComponent } from './carousel.component';
+import { ImageDialogComponent } from './image-dialog.component';
+import { InputNumberComponent } from './input-number.component';
 import { ListCardComponent } from './list-card.component';
+import { LoaiDayDialogComponent } from './loai-day-dialog.component';
+import { MatDHDialogComponent } from './mat-dong-ho-dialog.component';
 import { UploadComponent } from './upload/upload.component';
 
 
@@ -22,14 +27,24 @@ import { UploadComponent } from './upload/upload.component';
         UploadComponent,
         CarouselComponent,
         ListCardComponent,
-        BDHTableComponent
+        BDHTableComponent,
+        MatDHDialogComponent,
+        ImageDialogComponent,
+        LoaiDayDialogComponent,
+        BrandDialogComponent,
+        InputNumberComponent
     ],
     exports: [
         CardComponent,
         UploadComponent,
         CarouselComponent,
         ListCardComponent,
-        BDHTableComponent
+        BDHTableComponent,
+        MatDHDialogComponent,
+        ImageDialogComponent,
+        LoaiDayDialogComponent,
+        BrandDialogComponent,
+        InputNumberComponent
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

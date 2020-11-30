@@ -14,7 +14,7 @@ import { NavigationEnd, Router } from '@angular/router';
                   <div>
                     <div class="card h-90">
                       <a routerLink="/chi-tiet-san-pham"><img class="card-img-top"
-                          src="{{item.path}}" alt=""></a>
+                      [src]="createImgPath(item.path)" alt=""></a>
                       <div class="card-body" style="text-align: center">
                         <h4 class="card-title">
                           <a (click)="onSelect(item)">{{item.name}}</a>
@@ -43,7 +43,7 @@ export class ListCardComponent {
   total: 20;
   mySubscription: any;
   constructor(private router: Router) { }
-  onSelect(item: any) {
+  onSelect(item: any): void {
     this.router.navigate(['/detail', item.maCanHo]);
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
@@ -55,6 +55,9 @@ export class ListCardComponent {
       }
     });
   }
-  loadData(event: any) { }
-  addProductTocard() { }
+  public createImgPath = (serverPath: string) => {
+    return `https://localhost:44399/${serverPath}`;
+  }
+  loadData(event: any): void { }
+  addProductTocard(): void { }
 }

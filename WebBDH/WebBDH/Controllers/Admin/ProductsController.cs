@@ -70,14 +70,15 @@ namespace WebBDH.Controllers.Admin
             });
         }
 
-        private void SetUpdate(CreateModel<Product> query)
+        private void SetUpdate(UpdateModel<Product> query)
         {
             query.Entity.LastUpdateBy = "admin";
             query.Entity.LastUpdateTime = DateTime.Now;
         }
         private void SetAddNew(CreateModel<Product> query)
         {
-            SetUpdate(query);
+            query.Entity.LastUpdateBy = "admin";
+            query.Entity.LastUpdateTime = DateTime.Now;
             query.Entity.CreateBy = "admin";
             query.Entity.CreateTime = DateTime.Now;
         }

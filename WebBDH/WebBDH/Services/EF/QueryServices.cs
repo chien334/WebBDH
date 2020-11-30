@@ -91,8 +91,10 @@ namespace BDH.Services.EF
         {
             return await dbContext.Set<Image>()
                .AsNoTracking()
-               .Where(e => (model.Entity.Path == default || e.Path.Contains(model.Entity.Path)) &&
-                (model.Entity.IdProduct == default)
+               .Where(e => 
+                (model.Entity.Path == default || e.Path.Contains(model.Entity.Path)) &&
+                (model.Entity.IdProduct == default || e.IdProduct==model.Entity.IdProduct)&&
+                (model.Entity.Stt == default || e.Stt == model.Entity.Stt)
                )
                .Select(x => new ImageView(x)).PageResultAsync(model.Page, model.PageSize, cancellation);
         }
@@ -155,26 +157,26 @@ namespace BDH.Services.EF
                 (model.Entity.Name == default || e.Name.Contains(model.Entity.Name)) &&
                 (model.Entity.Color == default || e.Color.Contains(model.Entity.Color)) &&
                 (model.Entity.Description == default || e.Description.Contains(model.Entity.Description)) &&
-                (model.Entity.Brand == default || e.Brand.Contains(model.Entity.Brand)) &&
+                (model.Entity.Brand == default || e.IdBrand.Contains(model.Entity.Brand)) &&
                 (model.Entity.FromPrice == default || e.Price >= model.Entity.FromPrice) &&
                 (model.Entity.ToPrice == default || e.Price <= model.Entity.ToPrice) &&
                 (model.Entity.FromWeight == default || e.Weight >= model.Entity.FromWeight) &&
                 (model.Entity.ToWeight == default || e.Weight >= model.Entity.ToWeight) &&
                 (model.Entity.Sex == default || e.Sex == model.Entity.Sex) &&
-                (model.Entity.LoaiDay == default || e.LoaiDay.Contains(model.Entity.LoaiDay)) &&
-                (model.Entity.MatDongHo == default || e.Sex == e.MatDongHo.Contains(model.Entity.MatDongHo))
+                (model.Entity.LoaiDay == default || e.IdLoaiDay.Contains(model.Entity.LoaiDay)) &&
+                (model.Entity.MatDongHo == default || e.Sex == e.IdMatDongHo.Contains(model.Entity.MatDongHo))
                 )
                 .Select(x => new ProductModel() { 
                     Id=x.Id,
                     Name=x.Name,
                     Color= x.Color,
                     Description= x.Description,
-                    Brand=x.Brand,
+                    IdBrand=x.IdBrand,
                     Price=x.Price,
                     Weight= x.Weight,
                     Sex=x.Sex,
-                    LoaiDay=x.LoaiDay,
-                    MatDongHo=x.MatDongHo,
+                    IdLoaiDay=x.IdLoaiDay,
+                    IdMatDongHo=x.IdMatDongHo,
                     Path=x.Path
                 })
                 .PageResultAsync(model.Page, model.PageSize, cancellation);

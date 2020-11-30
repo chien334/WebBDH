@@ -15,6 +15,7 @@ export class MatDongHoComponent {
       title: 'sr_no',
       type: 'text',
       addable: false,
+      editable: false,
       valuePrepareFunction: (value, row, cell) => {
         return cell.row.index + 1;
       }

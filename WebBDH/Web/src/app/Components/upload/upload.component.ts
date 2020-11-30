@@ -7,14 +7,13 @@ import { HttpClient, HttpEventType } from '@angular/common/http';
   styleUrls: ['./upload.component.less']
 })
 export class UploadComponent implements OnInit {
-
   public progress: number;
   public message: string;
-
   @Output() public onUploadFinished = new EventEmitter();
 
   constructor(private http: HttpClient) { }
   ngOnInit() {
+
   }
 
   public uploadFile = (files) => {
@@ -22,11 +21,11 @@ export class UploadComponent implements OnInit {
       return;
     }
 
-    let fileToUpload = <File>files[0];
+    const fileToUpload = <File>files[0];
     const formData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
 
-    this.http.post('https://localhost:5001/admin/api/image/upload', formData, { reportProgress: true, observe: 'events' })
+    this.http.post('https://localhost:44399/admin/api/image/upload', formData, { reportProgress: true, observe: 'events' })
       .subscribe(event => {
         if (event.type === HttpEventType.UploadProgress) {
           this.progress = Math.round(100 * event.loaded / event.total);

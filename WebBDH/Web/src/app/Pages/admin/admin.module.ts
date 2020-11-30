@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoaiDayComponent } from './loai-day/loai-day.component';
 import { MatDongHoComponent } from './mat-dong-ho/mat-dong-ho.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 const routes: Routes = [
     {
         path: 'admin',
@@ -34,7 +35,9 @@ const routes: Routes = [
         Ng2SmartTableModule,
         Ng2CompleterModule,
         FormsModule,
-        ReactiveFormsModule
+        BrowserModule,
+        ReactiveFormsModule,
+        HttpClientModule
     ],
     declarations: [
         AdminComponent,
