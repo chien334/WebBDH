@@ -35,6 +35,16 @@ namespace WebBDH.Controllers.Admin
                 ToTalCount = data.TotalCount
             });
         }
+        [HttpPost]
+        public async Task<JsonResult> SearchModel(QueryModel<BrandQuery> query, CancellationToken cancelllationToken)
+        {
+            var data = await _service.SearchModel(query, cancelllationToken);
+            return new JsonResult(new
+            {
+                Success = data != null ? true : false,
+                Items = data
+            });
+        }
 
         [HttpPost]
         public async Task<JsonResult> Create(CreateModel<Brand> query, CancellationToken cancelllationToken)
