@@ -27,7 +27,7 @@ export class ProductComponent {
     },
     id: {
       title: 'ID Product',
-      type: 'number',
+      type: 'custom',
       addable: false,
       editable: false,
       renderComponent: ImageDialogComponent
@@ -43,7 +43,7 @@ export class ProductComponent {
         component: LoaiDayDialogComponent
       }
     },
-    idMatDongHo: {
+    idMatDH: {
       title: 'matDongHo',
       type: 'text',
       editor: {

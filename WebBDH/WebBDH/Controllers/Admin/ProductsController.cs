@@ -24,7 +24,7 @@ namespace WebBDH.Controllers.Admin
             _service = queryService;
         }
         [HttpPost]
-        public async Task<JsonResult> Search(QueryModel<ProductQuery> query, CancellationToken cancelllationToken)
+        public async Task<JsonResult> Search(QueryModel<ProductViewQuery> query, CancellationToken cancelllationToken)
         {
             var data = await _service.LoadProduct(query, cancelllationToken);
             return new JsonResult(new

@@ -14,6 +14,7 @@ import { NzAffixModule } from 'ng-zorro-antd/affix';
 import { NzStatisticModule } from 'ng-zorro-antd/statistic';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzCardModule } from 'ng-zorro-antd/card';
+import { BrowserModule } from '@angular/platform-browser';
 
 const routes: Routes = [
   {
@@ -33,6 +34,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     NgZorroAntdModule,
     ComponentModule,
+    BrowserModule 
   ],
   declarations: [
     UserComponent,

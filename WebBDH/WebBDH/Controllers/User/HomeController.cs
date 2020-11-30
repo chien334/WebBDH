@@ -24,7 +24,7 @@ namespace WebBDH.Controllers.User
         }
 
         [HttpPost]
-        public async Task<JsonResult> LoadProducts(QueryModel<ProductQuery> query, CancellationToken cancelllationToken)
+        public async Task<JsonResult> LoadProducts(QueryModel<ProductViewQuery> query, CancellationToken cancelllationToken)
         {
             var data = await _service.LoadProduct(query, cancelllationToken);
             return new JsonResult( new

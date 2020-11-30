@@ -14,8 +14,8 @@ namespace BDH.Services
 {
     public partial interface IQueryServices
     {
-        Task<MatDongHoView> SearchModel(MatDongHoQuery query,CancellationToken cancellationToken);
-        Task<LoaiDayView> SearchModel(LoaiDayQuery query, CancellationToken cancellationToken);
-        Task<BrandView> SearchModel(BrandQuery query, CancellationToken cancellationToken);
+        Task<MatDongHoView> SearchModel(QueryModel<MatDongHoQuery> query,CancellationToken cancellationToken);
+        Task<LoaiDayView> SearchModel(QueryModel<LoaiDayQuery> query, CancellationToken cancellationToken);
+        Task<BrandView> SearchModel(QueryModel<BrandQuery> query, CancellationToken cancellationToken);
     }
 }

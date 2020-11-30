@@ -4,11 +4,7 @@ import { CommonModule } from '@angular/common';
 import { NgZorroAntdModule } from 'src/app/ng-zorro-antd.module';
 import { DetailComponent } from './detail.component';
 import { ComponentModule } from 'src/app/Components/component.module';
-import { NzMenuModule } from 'ng-zorro-antd/menu';
-import { NzAffixModule } from 'ng-zorro-antd/affix';
-import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
-import { NzCardModule } from 'ng-zorro-antd/card';
-import { Component } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 const routes: Routes = [
@@ -20,7 +16,8 @@ const routes: Routes = [
     CommonModule,
     NgZorroAntdModule,
     RouterModule.forChild(routes),
-    ComponentModule
+    ComponentModule,
+    BrowserModule 
   ],
   declarations: [
   ],

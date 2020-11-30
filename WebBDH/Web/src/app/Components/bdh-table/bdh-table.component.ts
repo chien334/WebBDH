@@ -48,7 +48,7 @@ export class BDHTableComponent implements OnInit, AfterViewInit {
   getdataSource(): any {
     const baseRequest = {
       page: 1,
-      PageSize: 20,
+      pageSize: 20,
       entity: {}
     };
     this.postRequest(this.LINK_API + this.searchApi, baseRequest)

@@ -1,4 +1,4 @@
-<div class="container">
+<div style="margin:5%; width:85vw">
     <div class="nav_menu">
         <nav>
             <a href="">TRANG CHỦ</a> /
@@ -9,7 +9,26 @@
     <div class="content">
         <div class="img">
             <div class="img">
-            <img class="img" src="/img/mts-100l-7av.jpg">
+            <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" *ngFor="let ind of listImg ; index as i" data-slide-to="(i)" [ngClass]="{'active': i==0}"></li>
+                </ol>
+                <div class="carousel-inner" role="listbox"  >
+                    <div class="carousel-item "*ngFor="let item of listImg; index as i" [ngClass]="{'active': i==0}">
+                    <img class="d-block img"
+                        src="{{item.data}}"
+                        alt="First slide">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
         </div>
         <div class="save">
             <a href="#" class="button">Xem sản phẩm đã lưu</a>
@@ -50,13 +69,13 @@
             <h4>GỢI Ý DÀNH CHO BẠN</h4>
             <div class="list">
                 <div class="list_img">
-                    <img class="list_img" src="/img/1.png">
+                    <img class="list_img" src="https://ttol.vietnamnetjsc.vn/images/2018/05/25/13/40/net-cuoi-be-gai-9-1527053440039156820618.jpg">
                     <hr>
-                    <img class="list_img" src="/img/2.png">
+                    <img class="list_img" src="https://ttol.vietnamnetjsc.vn/images/2018/05/25/13/40/net-cuoi-be-gai-9-1527053440039156820618.jpg">
                     <hr>
-                    <img class="list_img" src="/img/3.png">
+                    <img class="list_img" src="https://ttol.vietnamnetjsc.vn/images/2018/05/25/13/40/net-cuoi-be-gai-9-1527053440039156820618.jpg">
                     <hr>
-                    <img class="list_img" src="/img/1.png">
+                    <img class="list_img" src="https://ttol.vietnamnetjsc.vn/images/2018/05/25/13/40/net-cuoi-be-gai-9-1527053440039156820618.jpg">
 
                 </div>
                 <div class="price">
@@ -125,7 +144,7 @@
                 <h4><b>LOẠI DÂY</b></h4>
             </div>
             <div class="row_2">
-                <span id="color"><a href="#">Bạc</a>,<a href="#">Nâu</a> , <a href="#">be</a></span><br><br>
+                <span id="color"><a href="#">Bạc</a></span><br><br>
                 <span id="color"><a href="#">Dây đeo bằng da thật</a></span>
             </div>
         </div>

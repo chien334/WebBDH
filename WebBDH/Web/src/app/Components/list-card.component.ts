@@ -44,7 +44,7 @@ export class ListCardComponent {
   mySubscription: any;
   constructor(private router: Router) { }
   onSelect(item: any): void {
-    this.router.navigate(['/detail', item.maCanHo]);
+    this.router.navigate(['/detail', item.name + '-' + item.id]);
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };

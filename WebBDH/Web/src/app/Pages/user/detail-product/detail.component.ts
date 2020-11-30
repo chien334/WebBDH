@@ -1,4 +1,4 @@
-import { Component ,CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
+import { Component  } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -6,5 +6,9 @@ import { Component ,CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
   styleUrls: ['./detail.component.less']
 })
 export class DetailComponent {
-  title = 'Web';
+  listImg = [
+    { data: 'https://ttol.vietnamnetjsc.vn/images/2018/05/25/13/40/net-cuoi-be-gai-9-1527053440039156820618.jpg' },
+    { data: 'https://ttol.vietnamnetjsc.vn/images/2018/05/25/13/40/net-cuoi-be-gai-9-1527053440039156820618.jpg' },
+    { data: 'https://ttol.vietnamnetjsc.vn/images/2018/05/25/13/40/net-cuoi-be-gai-9-1527053440039156820618.jpg' }
+  ];
 }

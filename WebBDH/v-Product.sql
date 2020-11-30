@@ -8,18 +8,18 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-alter view [dbo].[v_Product]
+ALTER view [dbo].[v_Product]
 as
 select p.[Id]
       ,p.[Name]
-      ,ld.[Name]as LoaiDay
-      ,md.[Name]as MatDongHo
+      ,ld.[Name]as IdLoaiDay
+      ,md.[Name]as IdMatDH
       ,p.[Description]
       ,p.[Price]
       ,p.[Color]
       ,p.[Weight]
       ,p.[Sex]
-      ,b.[Name] as Brand
+      ,b.[Name] as IdBrand
 	  ,ha.[path] from Product p
 join Brand b on p.IdBrand= b.Id
 join LoaiDay ld on p.IdLoaiDay= ld.Id

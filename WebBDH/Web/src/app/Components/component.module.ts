@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { NgZorroAntdModule } from 'src/app/ng-zorro-antd.module';
 import { BDHTableComponent } from './bdh-table/bdh-table.component';
@@ -20,7 +21,8 @@ import { UploadComponent } from './upload/upload.component';
         CommonModule,
         NgZorroAntdModule,
         Ng2SmartTableModule,
-        HttpClientModule
+        HttpClientModule,
+        FormsModule
     ],
     declarations: [
         CardComponent,

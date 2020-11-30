@@ -149,7 +149,7 @@ namespace BDH.Services.EF
                 .Select(x => new ProductView(x))
                 .PageResultAsync(model.Page, model.PageSize, cancellation);
         }
-        public async Task<IPagedList<ProductModel>> LoadProduct(QueryModel<ProductQuery> model, CancellationToken cancellation = default)
+        public async Task<IPagedList<ProductModel>> LoadProduct(QueryModel<ProductViewQuery> model, CancellationToken cancellation = default)
         {
             return await dbContext.Set<ProductModel>()
                 .AsNoTracking()
@@ -157,14 +157,14 @@ namespace BDH.Services.EF
                 (model.Entity.Name == default || e.Name.Contains(model.Entity.Name)) &&
                 (model.Entity.Color == default || e.Color.Contains(model.Entity.Color)) &&
                 (model.Entity.Description == default || e.Description.Contains(model.Entity.Description)) &&
-                (model.Entity.Brand == default || e.IdBrand.Contains(model.Entity.Brand)) &&
+                (model.Entity.IdBrand == default || e.IdBrand.Contains(model.Entity.IdBrand)) &&
                 (model.Entity.FromPrice == default || e.Price >= model.Entity.FromPrice) &&
                 (model.Entity.ToPrice == default || e.Price <= model.Entity.ToPrice) &&
                 (model.Entity.FromWeight == default || e.Weight >= model.Entity.FromWeight) &&
                 (model.Entity.ToWeight == default || e.Weight >= model.Entity.ToWeight) &&
                 (model.Entity.Sex == default || e.Sex == model.Entity.Sex) &&
-                (model.Entity.LoaiDay == default || e.IdLoaiDay.Contains(model.Entity.LoaiDay)) &&
-                (model.Entity.MatDongHo == default || e.Sex == e.IdMatDongHo.Contains(model.Entity.MatDongHo))
+                (model.Entity.IdLoaiDay == default || e.IdLoaiDay.Contains(model.Entity.IdLoaiDay)) &&
+                (model.Entity.IdMatDH == default || e.IdMatDH.Contains(model.Entity.IdMatDH))
                 )
                 .Select(x => new ProductModel() { 
                     Id=x.Id,
@@ -176,7 +176,7 @@ namespace BDH.Services.EF
                     Weight= x.Weight,
                     Sex=x.Sex,
                     IdLoaiDay=x.IdLoaiDay,
-                    IdMatDongHo=x.IdMatDongHo,
+                    IdMatDH = x.IdMatDH,
                     Path=x.Path
                 })
                 .PageResultAsync(model.Page, model.PageSize, cancellation);

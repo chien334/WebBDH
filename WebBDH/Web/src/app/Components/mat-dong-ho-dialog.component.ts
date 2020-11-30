@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 @Component({
     selector: 'app-home',
     template: `
-  <select nz-dropdown (ngModel)="selectedQuantity" (change)="updatedata($event)">
+  <select nz-dropdown [(ngModel)]="selectedQuantity" (change)="updatedata($event)">
     <option *ngFor="let country of options; index as i" [value]="country.id">{{country.name}}</option>
   </select>
   `,
@@ -17,8 +17,9 @@ import { map } from 'rxjs/operators';
 export class MatDHDialogComponent extends DefaultEditor implements OnInit, ViewCell {
     @Input() value: any;
     @Input() rowData: any;
-    URL = 'https://localhost:44399/admin/api/matdonghos/search';
-    selectedQuantity: any;
+    URL = 'https://localhost:44399/admin/api/matdonghos/';
+    selectedQuantity: number;
+    matDHModel: any;
     options = [];
     constructor(private http: HttpClient) {
         super();
@@ -29,15 +30,32 @@ export class MatDHDialogComponent extends DefaultEditor implements OnInit, ViewC
             pageSize: 20,
             entity: {}
         };
-        this.postRequest(this.URL, baseRequest)
+        this.postRequest(this.URL + 'search', baseRequest)
             .subscribe(
                 res => {
                     this.options = res;
                 },
                 () => console.log('HTTP request complete.')
             );
-        this.selectedQuantity = 1;
-        this.cell.newValue = Number(this.selectedQuantity);
+        this.getModel();
+    }
+    getModel(): void {
+        const baseRequest1 = {
+            page: 1,
+            pageSize: 20,
+            entity: {
+                name: this.cell.getValue()
+            }
+        };
+        this.postRequest(this.URL + 'searchModel', baseRequest1)
+            .subscribe(
+                res => {
+                    this.matDHModel = res;
+                    this.selectedQuantity = this.matDHModel.id;
+                    this.cell.newValue = Number(this.matDHModel.id);
+                },
+                () => console.log('HTTP request complete.')
+            );
     }
     updatedata(event: any): void {
         this.selectedQuantity = event.target.value;
