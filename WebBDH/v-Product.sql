@@ -8,7 +8,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-create view [dbo].[v_Product]
+alter view [dbo].[v_Product]
 as
 select p.[Id]
       ,p.[Name]
@@ -19,10 +19,12 @@ select p.[Id]
       ,p.[Color]
       ,p.[Weight]
       ,p.[Sex]
-      ,b.[Name] as Brand from Product p
+      ,b.[Name] as Brand
+	  ,ha.[path] from Product p
 join Brand b on p.IdBrand= b.Id
 join LoaiDay ld on p.IdLoaiDay= ld.Id
 join MatDongHo md on p.IdMatDH = md.Id
+left join (select ROW_NUMBER() OVER(ORDER BY IdProduct ASC) AS num_row, [path],IdProduct  from [Image]) ha on ha.IdProduct= p.Id and ha.num_row=1
 GO
 
 

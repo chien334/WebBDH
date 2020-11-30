@@ -165,6 +165,7 @@ namespace BDH.Services.EF
                 (model.Entity.MatDongHo == default || e.Sex == e.MatDongHo.Contains(model.Entity.MatDongHo))
                 )
                 .Select(x => new ProductModel() { 
+                    Id=x.Id,
                     Name=x.Name,
                     Color= x.Color,
                     Description= x.Description,

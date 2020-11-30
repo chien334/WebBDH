@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { Ng2SmartTableComponent } from 'ng2-smart-table';
+import { MatDHDialogComponent } from './dialog-product/mat-dong-ho-dialog.component';
 
 @Component({
   selector: 'app-home',
@@ -20,6 +21,10 @@ export class ProductComponent {
         return cell.row.index + 1;
       }
     },
+    id: {
+      title: 'ID Product',
+      typy: 'custom',
+    },
     name: {
       title: 'Full Name'
     },
@@ -27,7 +32,12 @@ export class ProductComponent {
       title: 'loaiDay'
     },
     matDongHo: {
-      title: 'matDongHo'
+      title: 'matDongHo',
+      type: 'text',
+      editor: {
+        type: 'custom',
+        component: MatDHDialogComponent
+      }
     },
     brand: {
       title: 'brand'

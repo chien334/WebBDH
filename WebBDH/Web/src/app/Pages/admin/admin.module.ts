@@ -8,9 +8,10 @@ import { BrandComponent } from './brand/brand.component';
 import { ProductComponent } from './product/product.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { Ng2CompleterModule } from 'ng2-completer';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoaiDayComponent } from './loai-day/loai-day.component';
 import { MatDongHoComponent } from './mat-dong-ho/mat-dong-ho.component';
+import { BrowserModule } from '@angular/platform-browser';
 const routes: Routes = [
     {
         path: 'admin',
@@ -32,7 +33,8 @@ const routes: Routes = [
         ComponentModule,
         Ng2SmartTableModule,
         Ng2CompleterModule,
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule
     ],
     declarations: [
         AdminComponent,
