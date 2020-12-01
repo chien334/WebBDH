@@ -58,7 +58,15 @@ namespace BDH.Services.EF
             var affecterRecords = await dbContext.SaveChangesAsync(cancellationToken);
             return affecterRecords;
         }
-
+        public async Task<long> LastIdOrderAsync(CancellationToken cancellationToken = default)
+        {
+            var last = await dbContext.Set<UserOrder>().LastOrDefaultAsync();
+            if(last != null)
+            {
+                return last.Id;
+            }
+            return 0;
+        }
         public virtual Task UpdateAsync<T>(T entity, CancellationToken cancellationToken) where T : class
         {
             dbContext.Update(entity);

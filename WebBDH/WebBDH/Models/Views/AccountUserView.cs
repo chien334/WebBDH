@@ -5,6 +5,7 @@ namespace WebBDH.Models.Views
 {
     public partial class AccountUserView
     {
+        public long Id { get; set; }
         public string UserName { get; set; }
         public string Phone { get; set; }
         public string FirstName { get; set; }
