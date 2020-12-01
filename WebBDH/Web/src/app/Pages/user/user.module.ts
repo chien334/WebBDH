@@ -34,7 +34,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     NgZorroAntdModule,
     ComponentModule,
-    BrowserModule 
+    BrowserModule
   ],
   declarations: [
     UserComponent,

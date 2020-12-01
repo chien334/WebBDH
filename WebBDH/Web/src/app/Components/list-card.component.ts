@@ -13,7 +13,7 @@ import { NavigationEnd, Router } from '@angular/router';
                 <a (click)="onSelect(item)">
                   <div>
                     <div class="card h-90">
-                      <a routerLink="/chi-tiet-san-pham"><img class="card-img-top"
+                      <a ><img class="card-img-top"
                       [src]="createImgPath(item.path)" alt=""></a>
                       <div class="card-body" style="text-align: center">
                         <h4 class="card-title">

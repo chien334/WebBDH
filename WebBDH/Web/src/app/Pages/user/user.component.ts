@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 
@@ -13,8 +13,10 @@ export class UserComponent implements OnInit {
   mySubscription: any;
   isLoggedIn = false;
   offsetTop = 0;
+  offsetBottom = 0;
   deadline = Date.now() + 1000 * 60 * 60 * 24 * 2;
   deadLines = Date.now() + 1000 * 60;
+  @ViewChild('valueSearch') name: ElementRef;
   constructor(private tokenStorageService: TokenStorageService, private router: Router) { }
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
@@ -38,5 +40,12 @@ export class UserComponent implements OnInit {
       }
     });
 
+  }
+  onKey(event: any): void {
+    this.onselect(event);
+  }
+  getdata(): void {
+    const value = this.name.nativeElement.value;
+    this.onselect(value);
   }
 }

@@ -30,6 +30,7 @@ namespace WebBDH.Responsitories
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<UserAccount> UserAccount { get; set; }
         public virtual DbSet<UserOrder> UserOrder { get; set; }
+        public virtual DbSet<VProduct> VProduct { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -67,16 +68,13 @@ namespace WebBDH.Responsitories
                     .IsUnicode(false)
                     .IsFixedLength();
 
-                entity.Property(e => e.Phone)
-                    .HasMaxLength(20)
-                    .IsFixedLength();
+                entity.Property(e => e.Phone).HasMaxLength(50);
+
+                entity.Property(e => e.Role).HasMaxLength(50);
 
                 entity.Property(e => e.UserName)
                     .HasMaxLength(80)
                     .IsUnicode(false);
-                entity.Property(e => e.Role)
-                    .HasMaxLength(10)
-                    .IsFixedLength();
             });
 
             modelBuilder.Entity<Brand>(entity =>
@@ -168,8 +166,6 @@ namespace WebBDH.Responsitories
 
             modelBuilder.Entity<Image>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.CreateBy).HasMaxLength(50);
 
                 entity.Property(e => e.CreateTime).HasColumnType("datetime");
@@ -180,8 +176,7 @@ namespace WebBDH.Responsitories
 
                 entity.Property(e => e.Path)
                     .HasColumnName("path")
-                    .HasMaxLength(255)
-                    .IsFixedLength();
+                    .HasMaxLength(255);
 
                 entity.Property(e => e.Stt).HasColumnName("stt");
 
@@ -414,6 +409,30 @@ namespace WebBDH.Responsitories
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.SetNull)
                     .HasConstraintName("FK_UserOrder_UserAccount");
+            });
+
+            modelBuilder.Entity<VProduct>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("v_Product");
+
+                entity.Property(e => e.Color).HasMaxLength(50);
+
+                entity.Property(e => e.IdBrand).HasMaxLength(255);
+
+                entity.Property(e => e.IdLoaiDay).HasMaxLength(255);
+
+                entity.Property(e => e.IdMatDh)
+                    .HasColumnName("IdMatDH")
+                    .HasMaxLength(255);
+
+                entity.Property(e => e.Name).HasMaxLength(255);
+
+                entity.Property(e => e.Path)
+                    .HasColumnName("path")
+                    .HasMaxLength(255)
+                    .IsFixedLength();
             });
 
             OnModelCreatingPartial(modelBuilder);

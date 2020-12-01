@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -13,10 +13,11 @@ export class TagComponent implements OnInit {
   tag = '';
   data= [];
   URL = 'https://localhost:44399/api/Home/LoadProducts';
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private router: Router, private http: HttpClient,private route: ActivatedRoute) { }
   ngOnInit(): void {
-    this.tag = this.router.url;
-    this.getData(this.tag);
+    // this.tag = this.router.url;
+    const queryparam = this.route.snapshot.paramMap.get('id');
+    this.getData(queryparam);
   }
   getData(tag: string) {
     const baseRequest = {
@@ -24,10 +25,12 @@ export class TagComponent implements OnInit {
       pageSize: 20,
       entity: {}
     };
-    if (tag === '/tag/nam') {
+    if (tag === 'nam') {
       baseRequest.entity = { sex: true };
-    } else if (tag === '/tag/nu') {
+    } else if (tag === 'nu') {
       baseRequest.entity = { sex: false };
+    }else {
+      baseRequest.entity = { name: tag };
     }
     this.postRequest(this.URL, baseRequest)
     .subscribe(

@@ -53,5 +53,6 @@ export class DetailComponent implements OnInit {
         })
       );
   }
+  addProductTocard(): void { }
 
 }

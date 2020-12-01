@@ -47,19 +47,21 @@
                 <li><b>Qùa tặng:</b>Thẻ<span id="mrg">MRG</span>thay pin miễn phí trọn đời cho sản phẩm trị giá
                     500.000đ</li>
             </ul>
-            <form action="">
-                <div class="button_choose">
-                    <input type="button" value="-">
-                    <input type="number" value="1" size="4">
-                    <input type="button" value="+">
+            <form action="" class="row">
+                <div class="col-sm">
+                    <div class="row">
+                        <input type="button" class="col-sm-2" value="-">
+                        <input type="number" class="col-sm" value="1" size="4">
+                        <input type="button" class="col-sm-2" value="+">
+                    </div>  
                 </div>
-                <button type="submit">CHỌN MUA</button>
+                <button type="submit" class="col-sm" (click)="addProductTocard()">CHỌN MUA</button>
             </form>
             <span>Gọi đặt mua: <b style="color: red;font-weight: bold;font-size: 20px;">093-413-6886</b> (Tư vấn
                 miễn phí)</span>
             <ul id=#product>
-                <li><b>Hà Nội:</b>473 Nguyễn Khang, mẫu vấn đề luôn có sẵn.</li>
-                <li><b>Hồ Chí Minh:</b> 256 Chu Văn An, quận Bình Thạnh, TP. Hồ Chí Minh</li>
+                <li><b>Hà Nội: </b>473 Nguyễn Khang, mẫu vấn đề luôn có sẵn.</li>
+                <li><b>Hồ Chí Minh: </b> 256 Chu Văn An, quận Bình Thạnh, TP. Hồ Chí Minh</li>
             </ul>
             <span class="title">
                 Đặt mua ngay sản phẩm này để được hưởng giá ưu đãi lớn nhất, thời gian chỉ còn:
@@ -67,39 +69,40 @@
         </div>
         <div class="list_product">
             <h4>GỢI Ý DÀNH CHO BẠN</h4>
-            <div class="list">
-                <div class="list_img">
-                    <img class="list_img" src="https://ttol.vietnamnetjsc.vn/images/2018/05/25/13/40/net-cuoi-be-gai-9-1527053440039156820618.jpg">
-                    <hr>
-                    <img class="list_img" src="https://ttol.vietnamnetjsc.vn/images/2018/05/25/13/40/net-cuoi-be-gai-9-1527053440039156820618.jpg">
-                    <hr>
-                    <img class="list_img" src="https://ttol.vietnamnetjsc.vn/images/2018/05/25/13/40/net-cuoi-be-gai-9-1527053440039156820618.jpg">
-                    <hr>
-                    <img class="list_img" src="https://ttol.vietnamnetjsc.vn/images/2018/05/25/13/40/net-cuoi-be-gai-9-1527053440039156820618.jpg">
-
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm">
+                        <img class="list_img" src="https://ttol.vietnamnetjsc.vn/images/2018/05/25/13/40/net-cuoi-be-gai-9-1527053440039156820618.jpg">
+                    </div>
+                    <div class="col-sm">
+                        <span>GA-710GB-1A</span><br>
+                        <a href="">
+                            <ins>3.820.000</ins> <del>4.771.00000</del>
+                        </a><br>
+                    </div>
                 </div>
-                <div class="price">
-                    <span>GA-710GB-1A</span><br>
-                    <a href="" id="text">
-                        <ins>3.820.000</ins> <del>4.771.00000</del>
-                    </a><br>
-                    <div class="text_1">
-                        <span>GA-BT100-1A</span><br>
+                <hr>
+                <div class="row">
+                    <div class="col-sm">
+                        <img class="list_img" src="https://ttol.vietnamnetjsc.vn/images/2018/05/25/13/40/net-cuoi-be-gai-9-1527053440039156820618.jpg">
+                    </div>
+                    <div class="col-sm">
+                        <span>GA-710GB-1A</span><br>
                         <a href="">
                             <ins>3.820.000</ins> <del>4.771.00000</del>
-                        </a>
-                    </div><br>
-                    <div class="text_2">
-                        <span>GA-BT100-1A</span><br>
+                        </a><br>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm">
+                        <img class="list_img" src="https://ttol.vietnamnetjsc.vn/images/2018/05/25/13/40/net-cuoi-be-gai-9-1527053440039156820618.jpg">
+                    </div>
+                    <div class="col-sm">
+                        <span>GA-710GB-1A</span><br>
                         <a href="">
                             <ins>3.820.000</ins> <del>4.771.00000</del>
-                        </a>
-                    </div><br>
-                    <div class="text_3">
-                        <span>GA-BT100-1A</span><br>
-                        <a href="" id="text_3">
-                            <ins>3.820.000</ins> <del>4.771.00000</del>
-                        </a>
+                        </a><br>
                     </div>
                 </div>
             </div>
@@ -124,18 +127,18 @@
                 <li>Hiển thị ngày</li>
                 <li>Dây đeo bằng da thật</li>
             </ul>
-            <h4><b>Đặc điểm kỹ thuật</b></h4>
+            <h4><b>Đặc điểm vỏ</b></h4>
             <ul>
                 <li>Vật liệu vỏ</li>
                 <li>Dây đeo cho bằng đời</li>
                 <li>Hiển thị ngày</li>
                 <li>Dây đeo bằng da thật</li>
             </ul>
-            <h4><b>Kích thước vỏ</b></h4>
-            <ul>
+            <!-- <h4><b>Kích thước vỏ</b></h4> -->
+            <!-- <ul>
                 <li>Vật liệu vỏ</li>
                 <li>Dây đeo cho bằng đời</li>
-            </ul>
+            </ul> -->
         </div>
     </div>
     <hr class="below">
@@ -143,30 +146,30 @@
         <div class="column_first">
             <h4><b>THÔNG TIN BỔ SUNG</b></h4>
         </div>
-        <div class="column_second">
-            <div class="row_1">
-                <h4><b>MÀU SẮC</b></h4>
-                <h4><b>LOẠI DÂY</b></h4>
+        <div class="container">
+            <div class="row">
+                <h4  class="col col-lg-3"><b>MÀU SẮC</b></h4>
+                <span  class="col"><a href="#">Bạc</a></span><br><br>
             </div>
-            <div class="row_2">
-                <span id="color"><a href="#">Bạc</a></span><br><br>
-                <span id="color"><a href="#">Dây đeo bằng da thật</a></span>
+            <div class="row">
+                <h4  class="col col-lg-3"><b>LOẠI DÂY</b></h4>
+                <span class="col"><a href="#">Dây đeo bằng da thật</a></span>
             </div>
         </div>
 
     </div>
     <hr class="below">
-    <div class="guarantee">
-        <div class="title">
+    <div class="row">
+        <div class="col col-lg-3">
             <h4><b>BẢO HÀNH</b></h4>
         </div>
-        <div class="paragraph">
-            <p>Đồng hồ CASIO chính hãng thường được bảo hành 1 năm cho máy và 18 tháng cho pin. <b>Đặc biệt dòng
-                G-SHOCK và BABY-G được bảo hành lên tới 5 năm</b>
+        <div class="col">
+            <p>Đồng hồ CASIO chính hãng thường được bảo hành 1 năm cho máy và 18 tháng cho pin. Đặc biệt dòng
+                G-SHOCK và BABY-G được bảo hành lên tới 5 năm
                 Mọi hư hỏng do hỏa hoạn, thiên tai hay sử dụng bất cẩn hoặc sử dụng sai hướng dẫn, bấm các nút điều
                 chỉnh khi đang ở dưới nước và những tổn hại trầy xước của dây, vỏ, mặt kính đều không được bảo hành.
                 Mọi hư hỏng do sửa chữa không đúng cách từ những dịch vụ khác không phải do TTBH chính hãng cũng
-                không được bảo hành.<br>
+                không được bảo hành.
                 Ngoài ra bạn có thể mang đồng hồ ra các đại lý đồng hồ Casio để nhận được sự tư vấn và bảo hành tại
                 trung tâm bảo hành của Casio.</p>
         </div>
