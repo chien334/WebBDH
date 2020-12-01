@@ -19,14 +19,14 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
   }
-  login() {
+  login(): void {
     this.router.navigateByUrl('/loginuser');
   }
-  logout() {
+  logout(): void {
     this.tokenStorageService.signOut();
     window.location.reload();
   }
-  onselect(item: string){
+  onselect(item: string): void {
     this.router.navigate(['/tag', item]);
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;

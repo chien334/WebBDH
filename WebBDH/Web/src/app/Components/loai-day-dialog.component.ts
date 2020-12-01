@@ -19,7 +19,7 @@ export class LoaiDayDialogComponent extends DefaultEditor implements OnInit, Vie
     @Input() rowData: any;
     URL = 'https://localhost:44399/admin/api/loaidays/';
     selectedQuantity: any;
-    loaiDayModel:any;
+    loaiDayModel: any;
     options = [];
     constructor(private http: HttpClient) {
         super();
@@ -30,7 +30,7 @@ export class LoaiDayDialogComponent extends DefaultEditor implements OnInit, Vie
             pageSize: 20,
             entity: {}
         };
-        this.postRequest(this.URL +'search', baseRequest)
+        this.postRequest(this.URL + 'search', baseRequest)
             .subscribe(
                 res => {
                     this.options = res;
