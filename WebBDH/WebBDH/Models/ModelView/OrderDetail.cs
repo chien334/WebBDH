@@ -13,5 +13,6 @@ namespace WebBDH.Models.ModelView
         public string City { get; set; }
         public string Province { get; set; }
         public string Content { get; set; }
+        public List<CartItem> cartitems;
     }
 }

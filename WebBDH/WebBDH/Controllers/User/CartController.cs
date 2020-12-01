@@ -50,13 +50,13 @@ namespace WebBDH.Controllers.User
         }
         [Authorize]
         [HttpPost]
-        public async Task<JsonResult> AddOrder(OrderDetail query,List<CartItem> cartitems, CancellationToken cancelllationToken)
+        public async Task<JsonResult> AddOrder(OrderDetail query, CancellationToken cancelllationToken)
         {
             //Luu thong tin hoa don
             UserOrder order = new UserOrder();
             double Total = 0;
             double Discount = 0;
-            foreach (CartItem i in cartitems)
+            foreach (CartItem i in query.cartitems)
             {
                 order.Total += (double)i.Price*i.Quantity;
                 order.Discount += (double)i.Discount*i.Quantity;
@@ -72,7 +72,7 @@ namespace WebBDH.Controllers.User
             await _service.AddAsync(order, cancelllationToken);
             //Luu thong tin chi tiet hoa don
             long OrderId = await _service.LastIdOrderAsync();
-            foreach (CartItem i in cartitems)
+            foreach (CartItem i in query.cartitems)
             {
                 OrderItem item = new OrderItem(i);
                 item.OrderId = OrderId + 1;

@@ -55,7 +55,8 @@ namespace BDH.Services.EF
             var user = dbContext.Set<UserAccount>()
                 .AsNoTracking()
                 .Where(x => x.UserName == userName && x.UserPassword == passWord)
-                .Select(x => new AccountUserView() { 
+                .Select(x => new AccountUserView() {
+                    Id=x.Id,
                     UserName= x.UserName,
                     LastName=x.LastName,
                     FirstName= x.FirstName,
