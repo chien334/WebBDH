@@ -20,5 +20,15 @@ namespace WebBDH.Models
 
         public virtual UserOrder Order { get; set; }
         public virtual Product Product { get; set; }
+        public OrderItem() { }
+        public OrderItem(CartItem i) 
+        {
+            ProductId = i.ProductId;
+            Sku = i.Sku;
+            Price = i.Price;
+            Discount = i.Discount;
+            Quantity = i.Quantity;
+            Content = i.Content;
+        }
     }
 }

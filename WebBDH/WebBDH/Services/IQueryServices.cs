@@ -22,6 +22,7 @@ namespace BDH.Services
         Task DeleteAsync<T>(T entity, CancellationToken cancellationToken) where T : class;
         Task DeleteAsync<T>(IEnumerable<T> entity, CancellationToken cancellationToken) where T : class;
         Task<int> SaveAsync(CancellationToken cancellationToken = default);
+        Task<long> LastIdOrderAsync(CancellationToken cancellationToken = default);
         Task<IPagedList<ProductView>> LoadListProduct(QueryModel<ProductQuery> model, CancellationToken cancellation = default);
         Task<IPagedList<ProductModel>> LoadProduct(QueryModel<ProductViewQuery> model, CancellationToken cancellation = default);
         Task<IPagedList<MatDongHoView>> LoadListMatDH(QueryModel<MatDongHoQuery> model, CancellationToken cancellation = default);
