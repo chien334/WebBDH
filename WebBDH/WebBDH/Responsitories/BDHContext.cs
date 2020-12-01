@@ -30,7 +30,6 @@ namespace WebBDH.Responsitories
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<UserAccount> UserAccount { get; set; }
         public virtual DbSet<UserOrder> UserOrder { get; set; }
-        public virtual DbSet<VProduct> VProduct { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -411,29 +410,6 @@ namespace WebBDH.Responsitories
                     .HasConstraintName("FK_UserOrder_UserAccount");
             });
 
-            modelBuilder.Entity<VProduct>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("v_Product");
-
-                entity.Property(e => e.Color).HasMaxLength(50);
-
-                entity.Property(e => e.IdBrand).HasMaxLength(255);
-
-                entity.Property(e => e.IdLoaiDay).HasMaxLength(255);
-
-                entity.Property(e => e.IdMatDh)
-                    .HasColumnName("IdMatDH")
-                    .HasMaxLength(255);
-
-                entity.Property(e => e.Name).HasMaxLength(255);
-
-                entity.Property(e => e.Path)
-                    .HasColumnName("path")
-                    .HasMaxLength(255)
-                    .IsFixedLength();
-            });
 
             OnModelCreatingPartial(modelBuilder);
         }
