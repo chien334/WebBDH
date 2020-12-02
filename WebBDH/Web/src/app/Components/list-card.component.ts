@@ -1,5 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { Observable, throwError } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { TokenStorageService } from '../_services/token-storage.service';
 
 @Component({
   selector: 'app-list-card',
@@ -14,14 +18,14 @@ import { NavigationEnd, Router } from '@angular/router';
                   <div>
                     <div class="card h-90">
                       <a ><img class="card-img-top"
-                      [src]="createImgPath(item.path)" alt=""></a>
+                      [src]="createImgPath(item.path)" style="height:40vh; " alt=""></a>
                       <div class="card-body" style="text-align: center">
                         <h4 class="card-title">
                           <a (click)="onSelect(item)">{{item.name}}</a>
                         </h4>
                         <h5>{{item.price}}VND</h5>
                         <h5 class="card-text">{{item.brand}}</h5>
-                        <button nz-button (click)="addProductTocard($event)">Thêm vào giỏ hành</button>
+                        <button nz-button (click)="addProductTocard(item)">Thêm vào giỏ hành</button>
                       </div>
                     </div>
                   </div>
@@ -40,9 +44,11 @@ import { NavigationEnd, Router } from '@angular/router';
 })
 export class ListCardComponent {
   @Input() data: any;
+  URL = 'https://localhost:44399/api/';
   total: 20;
   mySubscription: any;
-  constructor(private router: Router) { }
+  isLoggedIn = false;
+  constructor(private router: Router, private tokenStorageService: TokenStorageService, private http: HttpClient) { }
   onSelect(item: any): void {
     this.router.navigate(['/detail', item.name + '-' + item.id]);
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
@@ -56,8 +62,46 @@ export class ListCardComponent {
     });
   }
   public createImgPath = (serverPath: string) => {
+    if (serverPath === '' || serverPath === null) {
+      return './assets/screen-3.jpg';
+    }
     return `https://localhost:44399/${serverPath}`;
   }
   loadData(event: any): void { }
-  addProductTocard(): void { }
+  addProductTocard(item: any): void {
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
+    if (this.isLoggedIn) {
+      const idUser = this.tokenStorageService.getUser().id;
+      const idProducr = item.id;
+      const baseRequest1 = {
+        page: 1,
+        pageSize: 20,
+        entity: {
+          // id user + idProduct đã lấy
+        }
+      };
+      this.postRequest(this.URL + 'them cái duong dan', baseRequest1)
+        .subscribe(
+          res => {
+            // dứ liệu lấy ra là gì
+          },
+          () => console.log('HTTP request complete.')
+        );
+
+    } else {
+      this.router.navigateByUrl('/loginuser');
+    }
+  }
+  postRequest(api: string, request: any): Observable<any> {
+    return this.http.post(api, request, { observe: 'body' })
+      .pipe(
+        map((body: any) => {
+          if (body.success) {
+            return body.items;
+          } else {
+            throwError(body.message);
+          }
+        })
+      );
+  }
 }

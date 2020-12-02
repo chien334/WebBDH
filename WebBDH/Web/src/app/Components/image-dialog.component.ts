@@ -24,7 +24,7 @@ import { ImageToCreate } from 'src/app/models/imageToCreate.model';
             <form>
             <div class="form-group">
                 <label for="name">Stt</label>
-                <input type="number" class="form-control" id="stt" name="stt" (ngModel)="stt">
+                <input type="number" class="form-control" id="stt" name="stt" [(ngModel)]="stt">
             </div>
             <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
             <div class="row">
