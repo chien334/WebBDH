@@ -28,6 +28,7 @@ namespace WebBDH.Controllers.User
         public async Task<JsonResult> AddCartItem(CreateModel<CartItem> query, CancellationToken cancelllationToken)
         {
             SetAddNew(query);
+            query.Entity.Quantity = 1;
             await _service.AddAsync(query.Entity, cancelllationToken);
             var count = await _service.SaveAsync(cancelllationToken);
             return new JsonResult(new
