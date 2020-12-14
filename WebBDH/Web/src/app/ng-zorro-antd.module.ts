@@ -107,7 +107,6 @@ import { IconModule } from '@ant-design/icons-angular';
     NzNoAnimationModule,
     NzNotificationModule,
     NzPageHeaderModule,
-    NzPaginationModule,
     NzPopconfirmModule,
     NzPopoverModule,
     NzProgressModule,

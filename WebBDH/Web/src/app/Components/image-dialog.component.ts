@@ -49,6 +49,7 @@ import { ImageToCreate } from 'src/app/models/imageToCreate.model';
                     <td><img [src]="createImgPath(user.path)" alt="profile picture" style="width:60px; height:60px;"></td>
                     <td>{{user.stt}}</td>
                     <td>{{user.idProduct}}</td>
+                    <td><button nz-button nzType="primary" (click)='delectImage(user)'>Delete</button></td>
                 </tr>
             </tbody>
             </table>
@@ -124,6 +125,18 @@ export class ImageDialogComponent extends DefaultEditor implements OnInit, ViewC
                 () => console.log('HTTP request complete.')
             );
     }
+    delectImage(user: any): void {
+        const baseRequest = {
+            entity: user
+        };
+        this.postRequest(this.URL + 'delete', baseRequest)
+            .subscribe(
+                res => {
+                    this.getImage();
+                },
+                () => console.log('HTTP request complete.')
+            );
+    }
 
     private getImage = () => {
         const baseRequest = {
@@ -136,7 +149,7 @@ export class ImageDialogComponent extends DefaultEditor implements OnInit, ViewC
         this.postRequest(this.URL + 'search', baseRequest)
             .subscribe(
                 res => {
-                    this.users = res ;
+                    this.users = res;
                 },
                 () => console.log('HTTP request complete.')
             );

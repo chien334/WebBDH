@@ -10,27 +10,25 @@ import { TokenStorageService } from 'src/app/_services/token-storage.service';
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.less']
 })
-export class DetailComponent implements OnInit {
+export class DetailComponent implements OnInit, AfterViewInit {
   id: any;
   URL = 'https://localhost:44399/api/Home/';
   productModel: any;
   listProduct: any;
   isLoggedIn = false;
-  listImg = [
-    { data: 'https://ttol.vietnamnetjsc.vn/images/2018/05/25/13/40/net-cuoi-be-gai-9-1527053440039156820618.jpg' },
-    { data: 'https://ttol.vietnamnetjsc.vn/images/2018/05/25/13/40/net-cuoi-be-gai-9-1527053440039156820618.jpg' },
-    { data: 'https://ttol.vietnamnetjsc.vn/images/2018/05/25/13/40/net-cuoi-be-gai-9-1527053440039156820618.jpg' }
-  ];
+  listImg: any;
   // tslint:disable-next-line:max-line-length
   constructor(private route: ActivatedRoute, private http: HttpClient, private tokenStorageService: TokenStorageService, private router: Router) { }
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
+  }
+  async ngOnInit(): Promise<void> {
     const queryparam = this.route.snapshot.paramMap.get('id');
     this.id = queryparam.split('-')[1];
-    this.getModel(Number(this.id));
-    this.getListLienQuang();
-
+    this.productModel = await this.getModel(Number(this.id));
+    this.listProduct = await this.getListLienQuang();
+    this.listImg = this.productModel.image === [] ? [{ id: 0, path: null }] : this.productModel.image;
   }
-  getModel(idpro: number): void {
+  async getModel(idpro: number): Promise<any> {
     const baseRequest = {
       page: 1,
       pageSize: 20,
@@ -38,30 +36,16 @@ export class DetailComponent implements OnInit {
         id: idpro
       }
     };
-    this.postRequest(this.URL + 'SearchModel', baseRequest)
-      .subscribe(
-        res => {
-          this.productModel = res;
-          console.log(this.productModel);
-        },
-        () => console.log('HTTP request complete.')
-      );
+    return await this.postRequest(this.URL + 'SearchModel', baseRequest).toPromise();
   }
-  getListLienQuang(): void {
+  async getListLienQuang(): Promise<any> {
     const baseRequest = {
       page: 1,
       pageSize: 4,
       entity: {
       }
     };
-    this.postRequest(this.URL + 'LoadProducts', baseRequest)
-      .subscribe(
-        res => {
-          this.listProduct = res;
-          console.log(this.listProduct);
-        },
-        () => console.log('HTTP request complete.')
-      );
+    return await this.postRequest(this.URL + 'LoadProducts', baseRequest).toPromise();
   }
   postRequest(api: string, request: any): Observable<any> {
     return this.http.post(api, request, { observe: 'body' })
@@ -77,7 +61,7 @@ export class DetailComponent implements OnInit {
   }
   public createImgPath = (serverPath: string) => {
     if (serverPath === '' || serverPath === null) {
-      return './assets/screen-3.jpg';
+      return '/assets/screen-3.jpg';
     }
     return `https://localhost:44399/${serverPath}`;
   }

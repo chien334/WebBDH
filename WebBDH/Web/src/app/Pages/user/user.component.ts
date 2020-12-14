@@ -30,7 +30,7 @@ export class UserComponent implements OnInit {
   }
   onselect(item: string): void {
     this.router.navigate(['/tag', item]);
-    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => {
       return false;
     };
     this.mySubscription = this.router.events.subscribe((event) => {

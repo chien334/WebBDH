@@ -45,13 +45,13 @@ import { TokenStorageService } from '../_services/token-storage.service';
 export class ListCardComponent {
   @Input() data: any;
   URL = 'https://localhost:44399/api/';
-  total: 20;
+  total: 30;
   mySubscription: any;
   isLoggedIn = false;
   constructor(private router: Router, private tokenStorageService: TokenStorageService, private http: HttpClient) { }
   onSelect(item: any): void {
     this.router.navigate(['/detail', item.name + '-' + item.id]);
-    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => {
       return false;
     };
     this.mySubscription = this.router.events.subscribe((event) => {

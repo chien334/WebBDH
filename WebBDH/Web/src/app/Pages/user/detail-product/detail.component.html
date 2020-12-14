@@ -13,9 +13,9 @@
                     <li data-target="#carouselExampleIndicators" *ngFor="let ind of listImg ; index as i" data-slide-to="(i)" [ngClass]="{'active': i==0}"></li>
                 </ol>
                 <div class="carousel-inner" role="listbox"  >
-                    <div class="carousel-item "*ngFor="let item of listImg; index as i" [ngClass]="{'active': i==0}">
+                    <div class="carousel-item " *ngFor="let item of listImg; index as i" [ngClass]="{'active': i==0}">
                     <img class=" img"
-                        src="{{item.data}}"
+                        [src]="createImgPath(item.path)"
                         alt="First slide">
                     </div>
                 </div>
