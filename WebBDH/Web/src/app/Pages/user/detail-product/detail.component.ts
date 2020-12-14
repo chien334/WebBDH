@@ -13,6 +13,7 @@ import { TokenStorageService } from 'src/app/_services/token-storage.service';
 export class DetailComponent implements OnInit, AfterViewInit {
   id: any;
   URL = 'https://localhost:44399/api/Home/';
+  URLC = 'https://localhost:44399/api/Cart/';
   productModel: any;
   listProduct: any;
   isLoggedIn = false;
@@ -71,13 +72,17 @@ export class DetailComponent implements OnInit, AfterViewInit {
       const idUser = this.tokenStorageService.getUser().id;
       const idProducr = this.id;
       const baseRequest1 = {
-        page: 1,
-        pageSize: 20,
         entity: {
-          // id user + idProduct đã lấy
-        }
+          ProductId:5,
+          CartId:idUser,
+          Sku:"",
+          Price:0,
+          Discount:0,
+          Quantity:0,
+          Content:'',
+        },
       };
-      this.postRequest(this.URL + 'them cái duong dan', baseRequest1)
+      this.postRequest(this.URLC + 'AddCartItem', baseRequest1)
         .subscribe(
           res => {
             // dứ liệu lấy ra là gì
