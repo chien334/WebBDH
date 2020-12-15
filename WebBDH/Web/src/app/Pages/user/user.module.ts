@@ -15,6 +15,7 @@ import { NzStatisticModule } from 'ng-zorro-antd/statistic';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { BrowserModule } from '@angular/platform-browser';
+import { GioHangComponent } from './gio-hang/gio-hang.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,7 @@ const routes: Routes = [
     component: UserComponent,
     children: [
       { path: 'home', component: HomeComponent },
+      { path: 'giohang', component: GioHangComponent },
       { path: 'detail/:id', component: DetailComponent },
       { path: 'tag/:id', component: TagComponent },
     ]

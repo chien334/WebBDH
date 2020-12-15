@@ -23,7 +23,7 @@ namespace WebBDH.Controllers.User
         {
             _service = service;
         }
-        [Authorize]
+        //[Authorize]
         [HttpPost]
         public async Task<JsonResult> AddCartItem(CreateModel<CartItem> query, CancellationToken cancelllationToken)
         {

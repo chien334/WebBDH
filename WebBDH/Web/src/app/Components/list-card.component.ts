@@ -45,6 +45,7 @@ import { TokenStorageService } from '../_services/token-storage.service';
 export class ListCardComponent {
   @Input() data: any;
   URL = 'https://localhost:44399/api/';
+  URLC = 'https://localhost:44399/api/Cart/';
   total: 30;
   mySubscription: any;
   isLoggedIn = false;
@@ -71,16 +72,19 @@ export class ListCardComponent {
   addProductTocard(item: any): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
     if (this.isLoggedIn) {
-      const idUser = this.tokenStorageService.getUser().id;
-      const idProducr = item.id;
+      const idUser = this.tokenStorageService.getUser();
       const baseRequest1 = {
-        page: 1,
-        pageSize: 20,
         entity: {
-          // id user + idProduct đã lấy
-        }
+          productId: Number(item.id),
+          cartId: idUser.items.id,
+          sku: "",
+          price: 0,
+          discount: 0,
+          quantity: 0,
+          content: '',
+        },
       };
-      this.postRequest(this.URL + 'them cái duong dan', baseRequest1)
+      this.postRequest(this.URLC + 'AddCartItem', baseRequest1)
         .subscribe(
           res => {
             // dứ liệu lấy ra là gì

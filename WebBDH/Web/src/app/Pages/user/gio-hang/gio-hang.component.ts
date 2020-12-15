@@ -7,10 +7,10 @@ import { TokenStorageService } from 'src/app/_services/token-storage.service';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.less']
+  templateUrl: './gio-hang.component.html',
+  styleUrls: ['./gio-hang.component.less']
 })
-export class DetailComponent implements OnInit, AfterViewInit {
+export class GioHangComponent implements OnInit, AfterViewInit {
   id: any;
   URL = 'https://localhost:44399/api/Home/';
   URLC = 'https://localhost:44399/api/Cart/';
