@@ -40,6 +40,11 @@ namespace WebBDH.Controllers.User
         {
             {
                 SetAddNew(query);
+                var check = await _service.CheckAccountExist(query.Entity.UserName);
+                if (check)
+                {
+                    await _service.AddAsync(query.Entity, cancelllationToken);
+                }
                 await _service.AddAsync(query.Entity, cancelllationToken);
                 var count = await _service.SaveAsync(cancelllationToken);
                 return new JsonResult(new

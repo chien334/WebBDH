@@ -83,5 +83,18 @@ namespace BDH.Services.EF
             user.Token = tokenHandler.WriteToken(token);
             return await Task.FromResult(user);
         }
+        public async Task<bool> CheckAccountExist(string username)
+        {
+            var checkExist = dbContext.Set<UserAccount>()
+              .AsNoTracking()
+              .Where(e =>
+               e.UserName == username
+              ).FirstOrDefault();
+            if (checkExist == null)
+            {
+                await Task.FromResult(true);
+            }
+            return await Task.FromResult(false);
+        }
     }
 }

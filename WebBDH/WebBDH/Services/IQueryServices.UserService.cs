@@ -16,5 +16,6 @@ namespace BDH.Services
     {
         Task<AccountView> AuthenticateAdmin(string userName,string passWord);
         Task<AccountUserView> AuthenticateUser(string userName,string passWord);
+        Task<bool> CheckAccountExist(string username);
     }
 }
