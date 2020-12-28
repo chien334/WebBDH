@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebBDH.Models;
 using WebBDH.Models.ModelView;
+using WebBDH.Models.Queries;
 
 namespace WebBDH.Controllers.User
 {
@@ -25,11 +26,37 @@ namespace WebBDH.Controllers.User
         }
         //[Authorize]
         [HttpPost]
+        public async Task<JsonResult> LoadCart(QueryModel<CartQuery> query, CancellationToken cancelllationToken)
+        {
+            var data = await _service.LoadCart(query, cancelllationToken);
+            double total = 0;
+            foreach (CartItem d in data){
+                total += (double)d.Price;
+            }
+            return new JsonResult(new
+            {
+                Items = data.ToArray(),
+                TotalPrice=total,
+                Success = data.Count() > 0 ? true : false,
+                ToTalCount = data.TotalCount
+            });
+        }
+        [HttpPost]
         public async Task<JsonResult> AddCartItem(CreateModel<CartItem> query, CancellationToken cancelllationToken)
         {
-            SetAddNew(query);
-            query.Entity.Quantity = 1;
-            await _service.AddAsync(query.Entity, cancelllationToken);
+            var check = await _service.CheckCartItem((long)query.Entity.ProductId, (long)query.Entity.CartId);
+            if (check==null)
+            {
+                SetAddNew(query);
+                query.Entity.Quantity = 1;
+                await _service.AddAsync(query.Entity, cancelllationToken);
+            }
+            else
+            {
+                check.Quantity+=1;
+                SetUpdate(check);
+                await _service.UpdateAsync(check, cancelllationToken);
+            }
             var count = await _service.SaveAsync(cancelllationToken);
             return new JsonResult(new
             {
@@ -37,7 +64,6 @@ namespace WebBDH.Controllers.User
                 Entity = query.Entity
             });
         }
-        [Authorize]
         [HttpPost]
         public async Task<JsonResult> DeleteCartItem(CreateModel<CartItem> query, CancellationToken cancelllationToken)
         {
@@ -49,38 +75,45 @@ namespace WebBDH.Controllers.User
                 Entity = query.Entity
             });
         }
-        [Authorize]
         [HttpPost]
-        public async Task<JsonResult> AddOrder(OrderDetail query, CancellationToken cancelllationToken)
+        public async Task<JsonResult> AddOrder(CreateModel<OrderDetail> query, CancellationToken cancelllationToken)
         {
             //Luu thong tin hoa don
             UserOrder order = new UserOrder();
             double Total = 0;
             double Discount = 0;
-            foreach (CartItem i in query.cartitems)
+            foreach (CartItem i in query.Entity.cartitems)
             {
-                order.Total += (double)i.Price*i.Quantity;
-                order.Discount += (double)i.Discount*i.Quantity;
+                Total += (double)i.Price;
+                Discount += (double)i.Discount;
             }
-            order.FirstName = query.FirstName;
-            order.LastName = query.LastName;
-            order.Phone = query.Phone;
-            order.City = query.City;
-            order.Province = query.Province;
-            order.Content = query.Content;
+            order.FirstName = query.Entity.FirstName;
+            order.LastName = query.Entity.LastName;
+            order.Phone = query.Entity.Phone;
+            order.City = query.Entity.City;
+            order.Province = query.Entity.Province;
+            order.Content = query.Entity.Content;
+            order.Total = Total;
+            order.Discount = Discount;
             order.GrandTotal = Total - Discount;
             SetAddNewOrder(order);
             await _service.AddAsync(order, cancelllationToken);
+            var count = await _service.SaveAsync(cancelllationToken);
             //Luu thong tin chi tiet hoa don
             long OrderId = await _service.LastIdOrderAsync();
-            foreach (CartItem i in query.cartitems)
+            foreach (CartItem i in query.Entity.cartitems)
             {
                 OrderItem item = new OrderItem(i);
-                item.OrderId = OrderId + 1;
+                item.OrderId = OrderId;
                 SetAddNewOrderItem(item);
                 await _service.AddAsync(item, cancelllationToken);
             }
-            var count = await _service.SaveAsync(cancelllationToken);
+            count+= await _service.SaveAsync(cancelllationToken);
+            foreach (CartItem i in query.Entity.cartitems)
+            {
+                await _service.DeleteCartItem(i.Id);
+            }
+            await _service.SaveAsync(cancelllationToken);
             return new JsonResult(new
             {
                 Success = count > 0,
@@ -90,9 +123,9 @@ namespace WebBDH.Controllers.User
 
         private void SetAddNew(CreateModel<CartItem> query)
         {
-            query.Entity.LastUpdateBy = "user....";
+            query.Entity.LastUpdateBy = query.Entity.CartId.ToString();
             query.Entity.LastUpdateTime = DateTime.Now;
-            query.Entity.CreateBy = "user....";
+            query.Entity.CreateBy = query.Entity.CartId.ToString();
             query.Entity.CreateTime = DateTime.Now;
         }
         private void SetAddNewOrder(UserOrder order)
@@ -108,6 +141,11 @@ namespace WebBDH.Controllers.User
             order.LastUpdateTime = DateTime.Now;
             order.CreateBy = "user";
             order.CreateTime = DateTime.Now;
+        }
+        private void SetUpdate(CartItem query)
+        {
+            query.LastUpdateBy = query.CartId.ToString();
+            query.LastUpdateTime = DateTime.Now;
         }
     }
 }

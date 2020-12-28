@@ -1,7 +1,9 @@
-<h2 class="text-center">Hướng dẫn thiết giao diện trang giỏ hàng bằng Bootstrap</h2>
-<div class="container">
-  <!-- <app-list-shop-cart [cartModel]="cartModel" [totalPrice]="totalPrice"></app-list-shop-cart> -->
-  <table id="cart" class="table table-hover table-condensed">
+import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+
+@Component({
+    selector: 'app-list-shop-cart',
+    template: `
+    <table id="cart" class="table table-hover table-condensed">
     <thead>
       <tr>
         <th style="width:50%">Tên sản phẩm</th>
@@ -30,7 +32,7 @@
         </td>
         <td data-th="Subtotal" class="text-center">{{item.price}}</td>
         <td class="actions" data-th="">
-          <button class="btn btn-danger btn-sm" (click)="DeleteItem(item)">Xóa<i class="fa fa-trash-o"></i>
+          <button class="btn btn-danger btn-sm">Xóa<i class="fa fa-trash-o"></i>
           </button>
         </td>
       </tr>
@@ -43,10 +45,16 @@
         <td colspan="2" class="hidden-xs"> </td>
         <td class="hidden-xs text-center"><strong>Tổng tiền {{totalPrice}} đ</strong>
         </td>
-        <td><a class="btn btn-success btn-block" (click)="addOrder()">Thanh toán <i
+        <td><a href="http://hocwebgiare.com/" class="btn btn-success btn-block">Thanh toán <i
               class="fa fa-angle-right"></i></a>
         </td>
       </tr>
     </tfoot>
   </table>
-</div>
+    `,
+    styles: [``]
+})
+export class ListShopCartComponent {
+     @Input() cartModel: any; 
+     @Input() totalPrice:any;
+}
