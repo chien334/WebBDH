@@ -52,7 +52,6 @@ namespace BDH.Services.EF
             dbContext.Set<T>().RemoveRange(entity);
             return Task.CompletedTask;
         }
-
         public async Task<int> SaveAsync(CancellationToken cancellationToken = default)
         {
             var affecterRecords = await dbContext.SaveChangesAsync(cancellationToken);
@@ -60,7 +59,7 @@ namespace BDH.Services.EF
         }
         public async Task<long> LastIdOrderAsync(CancellationToken cancellationToken = default)
         {
-            var last = await dbContext.Set<UserOrder>().LastOrDefaultAsync();
+            var last = await dbContext.Set<UserOrder>().OrderByDescending(x=>x.Id).FirstOrDefaultAsync();
             if(last != null)
             {
                 return last.Id;
@@ -188,6 +187,44 @@ namespace BDH.Services.EF
                     Path=x.Path
                 })
                 .PageResultAsync(model.Page, model.PageSize, cancellation);
+        }
+        /// Cart Service
+        public async Task<IPagedList<CartItem>> LoadCart(QueryModel<CartQuery> model, CancellationToken cancellation = default)
+        {
+            return await dbContext.Set<CartItem>()
+                .AsNoTracking()
+                .Where(e =>
+                (model.Entity.UserId == default || e.CartId== model.Entity.UserId)
+                )
+                .Select(x => new CartItem() { 
+                    Id=x.Id,
+                    Product=x.Product,
+                    ProductId=x.Product.Id,
+                    Sku=x.Sku,
+                    Discount=x.Discount,
+                    Content=x.Content,
+                    Quantity=x.Quantity,
+                    Price=x.Product.Price * x.Quantity - x.Discount,
+                })
+                .PageResultAsync(model.Page, model.PageSize, cancellation);
+        }
+        public async Task<CartItem> CheckCartItem(long productid,long cartid)
+        {
+            var data=dbContext.Set<CartItem>().AsNoTracking().Where(e =>
+                (cartid == default || e.CartId == cartid) &&
+                (productid == default || e.ProductId == productid)
+                ).FirstOrDefault();
+            if (data != default)
+            {
+                return data;
+            }
+            return null;
+        }
+        public async Task DeleteCartItem(long cartitemid)
+        {
+            var data = dbContext.Set<CartItem>().AsNoTracking().First(p => p.Id==cartitemid);
+            dbContext.Set<CartItem>().Remove(data);
+            return;
         }
     }
 }

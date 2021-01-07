@@ -11,51 +11,96 @@ import { TokenStorageService } from 'src/app/_services/token-storage.service';
   styleUrls: ['./gio-hang.component.less']
 })
 export class GioHangComponent implements OnInit, AfterViewInit {
-  id: any;
+  userid: any;
   URL = 'https://localhost:44399/api/Home/';
   URLC = 'https://localhost:44399/api/Cart/';
-  productModel: any;
+  data:any;
+  public cartModel: any;
+  totalPrice:any;
   listProduct: any;
   isLoggedIn = false;
   listImg: any;
   // tslint:disable-next-line:max-line-length
   constructor(private route: ActivatedRoute, private http: HttpClient, private tokenStorageService: TokenStorageService, private router: Router) { }
-  ngAfterViewInit(): void {
+  async ngAfterViewInit(): Promise<void> {
+    this.data = await this.getModel(Number(this.userid));
+    this.cartModel=this.data[0];
+    this.totalPrice=this.data[1];
+    this.listImg = this.cartModel.image === [] ? [{ id: 0, path: null }] : this.cartModel.image;
   }
   async ngOnInit(): Promise<void> {
-    const queryparam = this.route.snapshot.paramMap.get('id');
-    this.id = queryparam.split('-')[1];
-    this.productModel = await this.getModel(Number(this.id));
-    this.listProduct = await this.getListLienQuang();
-    this.listImg = this.productModel.image === [] ? [{ id: 0, path: null }] : this.productModel.image;
+    this.userid = 1;
+    
   }
   async getModel(idpro: number): Promise<any> {
     const baseRequest = {
       page: 1,
       pageSize: 20,
       entity: {
-        id: idpro
+        UserId: idpro
       }
     };
-    return await this.postRequest(this.URL + 'SearchModel', baseRequest).toPromise();
+    return await this.postRequest(this.URLC + 'LoadCart', baseRequest).toPromise();
   }
-  async getListLienQuang(): Promise<any> {
-    const baseRequest = {
-      page: 1,
-      pageSize: 4,
-      entity: {
-      }
-    };
-    return await this.postRequest(this.URL + 'LoadProducts', baseRequest).toPromise();
+  DeleteItem(item:any): void {
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
+    if (this.isLoggedIn) {
+      const idUser = this.tokenStorageService.getUser();
+      // const idProducr = this.id;
+      const baseRequest1 = {
+        entity: item,
+      };
+      this.postRequest(this.URLC + 'DeleteCartItem', baseRequest1)
+        .subscribe(
+          res => {
+            alert("Xóa sản phẩm thành công");
+            window.location.reload();
+          },
+          () => console.log('HTTP request complete.')
+        );
+
+    } else {
+      this.router.navigateByUrl('/loginuser');
+    }
+  }
+  addOrder(): void {
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
+    if (this.isLoggedIn) {
+      const idUser = this.tokenStorageService.getUser();
+      // const idProducr = this.id;
+      const baseRequest1 = {
+        entity: {
+          FirstName: "Chien",
+          LastName: "Le",
+          Phone:"0989898787",
+          City:"HCM",
+          Province:"Quan 3",
+          Content:"khong co",
+          cartitems:this.cartModel,
+        },
+      };
+      this.postRequest(this.URLC + 'AddOrder', baseRequest1)
+        .subscribe(
+          res => {
+            alert("Da luu hoa don");
+            this.router.navigateByUrl('/home');
+          },
+          () => console.log('HTTP request complete.')
+        );
+
+    } else {
+      this.router.navigateByUrl('/loginuser');
+    }
   }
   postRequest(api: string, request: any): Observable<any> {
     return this.http.post(api, request, { observe: 'body' })
       .pipe(
         map((body: any) => {
-          if (body.success) {
-            return body.items;
+          if (body.success) {          
+            return [body.items,body.totalPrice];
           } else {
             throwError(body.message);
+            this.router.navigateByUrl('/home');
           }
         })
       );
@@ -65,34 +110,6 @@ export class GioHangComponent implements OnInit, AfterViewInit {
       return '/assets/screen-3.jpg';
     }
     return `https://localhost:44399/${serverPath}`;
-  }
-  addProductTocard(): void {
-    this.isLoggedIn = !!this.tokenStorageService.getToken();
-    if (this.isLoggedIn) {
-      const idUser = this.tokenStorageService.getUser();
-      // const idProducr = this.id;
-      const baseRequest1 = {
-        entity: {
-          productId: Number(this.id),
-          cartId: idUser.items.id,
-          sku: "",
-          price: 0,
-          discount: 0,
-          quantity: 0,
-          content: '',
-        },
-      };
-      this.postRequest(this.URLC + 'AddCartItem', baseRequest1)
-        .subscribe(
-          res => {
-            // dứ liệu lấy ra là gì
-          },
-          () => console.log('HTTP request complete.')
-        );
-
-    } else {
-      this.router.navigateByUrl('/loginuser');
-    }
   }
 
 }

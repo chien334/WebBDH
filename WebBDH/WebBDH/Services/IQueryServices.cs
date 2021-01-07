@@ -31,5 +31,8 @@ namespace BDH.Services
         Task<IPagedList<AccountView>> LoadListAccount(QueryModel<AccountQuery> model, CancellationToken cancellation = default);
         Task<IPagedList<BrandView>> LoadListBrand(QueryModel<BrandQuery> model, CancellationToken cancellation = default);
         Task<IPagedList<LoaiDayView>> LoadListLoaiDay(QueryModel<LoaiDayQuery> model, CancellationToken cancellation = default);
+        Task<IPagedList<CartItem>> LoadCart(QueryModel<CartQuery> model, CancellationToken cancellation = default);
+        Task<CartItem> CheckCartItem(long productid, long cartid);
+        Task DeleteCartItem(long cartitemid);
     }
 }

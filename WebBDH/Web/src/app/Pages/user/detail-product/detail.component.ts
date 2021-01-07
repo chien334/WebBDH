@@ -86,6 +86,7 @@ export class DetailComponent implements OnInit, AfterViewInit {
         .subscribe(
           res => {
             // dứ liệu lấy ra là gì
+            this.router.navigateByUrl('/giohang');
           },
           () => console.log('HTTP request complete.')
         );

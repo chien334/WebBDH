@@ -11,6 +11,7 @@ import { CarouselComponent } from './carousel.component';
 import { ImageDialogComponent } from './image-dialog.component';
 import { InputNumberComponent } from './input-number.component';
 import { ListCardComponent } from './list-card.component';
+import { ListShopCartComponent } from './list-shop-card.component';
 import { LoaiDayDialogComponent } from './loai-day-dialog.component';
 import { MatDHDialogComponent } from './mat-dong-ho-dialog.component';
 import { UploadComponent } from './upload/upload.component';
@@ -34,7 +35,8 @@ import { UploadComponent } from './upload/upload.component';
         ImageDialogComponent,
         LoaiDayDialogComponent,
         BrandDialogComponent,
-        InputNumberComponent
+        InputNumberComponent,
+        ListShopCartComponent
     ],
     exports: [
         CardComponent,
@@ -46,7 +48,8 @@ import { UploadComponent } from './upload/upload.component';
         ImageDialogComponent,
         LoaiDayDialogComponent,
         BrandDialogComponent,
-        InputNumberComponent
+        InputNumberComponent,
+        ListShopCartComponent
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

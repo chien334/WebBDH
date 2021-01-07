@@ -43,6 +43,7 @@ const routes: Routes = [
     HomeComponent,
     DetailComponent,
     TagComponent,
+    GioHangComponent
   ],
   exports: [
     RouterModule,
