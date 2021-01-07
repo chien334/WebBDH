@@ -1,8 +1,15 @@
 <nz-layout>
   <nz-layout>
-    <nz-sider style="width:30%">Sider</nz-sider>
+    <nz-sider style="width:30%">
+      <nz-radio-group [(ngModel)]="radioValue">
+        <label nz-radio nzValue="A" (click)='setdata("A")'>Từ 500.000đ - 1.000.000đ</label>
+        <label nz-radio nzValue="B" (click)='setdata("B")'>Từ 1.000.000đ - 2.000.000đ</label>
+        <label nz-radio nzValue="C" (click)='setdata("C")'>Lớn hơn 2.000.000đ</label>
+      </nz-radio-group>
+      <button type="button" class="btn btn-primary" (click)="getDataPrice(radioValue)" >Tìm kiếm</button>
+    </nz-sider>
     <nz-content  style="padding: 2.5%; min-height: 86vh;">
-      <app-list-card [data]="data"></app-list-card>
+      <router-outlet></router-outlet>
     </nz-content>
   </nz-layout>
 </nz-layout>

@@ -6,12 +6,12 @@ import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './tag.component.html',
-  styleUrls: ['./tag.component.less']
+  templateUrl: './list-product.component.html',
+  styleUrls: ['./list-product.component.less']
 })
-export class TagComponent implements OnInit {
+export class ListProductComponent implements OnInit {
   tag = '';
-  radioValue = 'A';
+  radioValue = '';
   data = [];
   mySubscription: any;
   URL = 'https://localhost:44399/api/Home/LoadProducts';
@@ -31,6 +31,21 @@ export class TagComponent implements OnInit {
       baseRequest.entity = { sex: true };
     } else if (tag === 'nu') {
       baseRequest.entity = { sex: false };
+    } else if (tag === 'priceA') {
+      baseRequest.entity = {
+        fromPrice: 500000,
+        toPrice: 1000000
+      };
+    } else if (tag === 'priceB') {
+      baseRequest.entity = {
+        fromPrice: 1000001,
+          toPrice: 2000000
+      };
+    } else if (tag === 'priceC') {
+      baseRequest.entity = {
+        fromPrice: 2000001,
+        toPrice: 50000000
+      };
     } else {
       baseRequest.entity = { name: tag };
     }
@@ -42,7 +57,7 @@ export class TagComponent implements OnInit {
         () => console.log('HTTP request complete.')
       );
   }
-  getDataPrice(st: any): void {
+  getDataPrice(): void {
     let baseRequest: any;
     if (this.radioValue === 'A') {
       baseRequest = {
@@ -75,16 +90,11 @@ export class TagComponent implements OnInit {
     this.postRequest(this.URL, baseRequest)
       .subscribe(
         res => {
-          if (res !== undefined) {
-            this.data = res;
-          }
-          this.onselect('price' + this.radioValue);
+          this.data = res;
+          this.onselect('fromPrice=' + baseRequest.entity.fromPrice + '&&toPrice=' + baseRequest.entity.toPrice);
         },
         () => console.log('HTTP request complete.')
       );
-  }
-  setdata(e: any): void {
-    this.radioValue = e;
   }
   postRequest(api: string, request: any): Observable<any> {
     return this.http.post(api, request, { observe: 'body' })

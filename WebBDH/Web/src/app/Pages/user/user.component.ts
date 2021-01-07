@@ -29,7 +29,7 @@ export class UserComponent implements OnInit {
     window.location.reload();
   }
   onselect(item: string): void {
-    this.router.navigate(['/tag', item]);
+    this.router.navigate(['/tag/list-product', item]);
     this.router.routeReuseStrategy.shouldReuseRoute = () => {
       return false;
     };

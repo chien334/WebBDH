@@ -16,16 +16,25 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { BrowserModule } from '@angular/platform-browser';
 import { GioHangComponent } from './gio-hang/gio-hang.component';
+import { ListProductComponent } from './tag/list-product/list-product.component';
 
 const routes: Routes = [
   {
     path: '',
     component: UserComponent,
     children: [
+
       { path: 'home', component: HomeComponent },
       { path: 'giohang', component: GioHangComponent },
       { path: 'detail/:id', component: DetailComponent },
-      { path: 'tag/:id', component: TagComponent },
+      {
+        path: 'tag', component: TagComponent, children: [
+          { path: 'tag', pathMatch: 'full', redirectTo: '/list-product' },
+          { path: 'list-product/:id', component: ListProductComponent },
+          { path: 'list-product', component: ListProductComponent }
+        ]
+      },
+
     ]
   },
 ];
@@ -43,14 +52,16 @@ const routes: Routes = [
     HomeComponent,
     DetailComponent,
     TagComponent,
-    GioHangComponent
+    GioHangComponent,
+    ListProductComponent
   ],
   exports: [
     RouterModule,
     UserComponent,
     HomeComponent,
     DetailComponent,
-    TagComponent
+    TagComponent,
+    ListProductComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

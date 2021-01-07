@@ -14,9 +14,9 @@ export class GioHangComponent implements OnInit, AfterViewInit {
   userid: any;
   URL = 'https://localhost:44399/api/Home/';
   URLC = 'https://localhost:44399/api/Cart/';
-  data:any;
+  data: any;
   public cartModel: any;
-  totalPrice:any;
+  totalPrice: any;
   listProduct: any;
   isLoggedIn = false;
   listImg: any;
@@ -24,13 +24,13 @@ export class GioHangComponent implements OnInit, AfterViewInit {
   constructor(private route: ActivatedRoute, private http: HttpClient, private tokenStorageService: TokenStorageService, private router: Router) { }
   async ngAfterViewInit(): Promise<void> {
     this.data = await this.getModel(Number(this.userid));
-    this.cartModel=this.data[0];
-    this.totalPrice=this.data[1];
+    this.cartModel = this.data[0];
+    this.totalPrice = this.data[1];
     this.listImg = this.cartModel.image === [] ? [{ id: 0, path: null }] : this.cartModel.image;
   }
   async ngOnInit(): Promise<void> {
     this.userid = 1;
-    
+
   }
   async getModel(idpro: number): Promise<any> {
     const baseRequest = {
@@ -42,7 +42,7 @@ export class GioHangComponent implements OnInit, AfterViewInit {
     };
     return await this.postRequest(this.URLC + 'LoadCart', baseRequest).toPromise();
   }
-  DeleteItem(item:any): void {
+  DeleteItem(item: any): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
     if (this.isLoggedIn) {
       const idUser = this.tokenStorageService.getUser();
@@ -53,7 +53,7 @@ export class GioHangComponent implements OnInit, AfterViewInit {
       this.postRequest(this.URLC + 'DeleteCartItem', baseRequest1)
         .subscribe(
           res => {
-            alert("Xóa sản phẩm thành công");
+            alert('Xóa sản phẩm thành công');
             window.location.reload();
           },
           () => console.log('HTTP request complete.')
@@ -70,19 +70,19 @@ export class GioHangComponent implements OnInit, AfterViewInit {
       // const idProducr = this.id;
       const baseRequest1 = {
         entity: {
-          FirstName: "Chien",
-          LastName: "Le",
-          Phone:"0989898787",
-          City:"HCM",
-          Province:"Quan 3",
-          Content:"khong co",
-          cartitems:this.cartModel,
+          FirstName: 'Chien',
+          LastName: 'Le',
+          Phone: '0989898787',
+          City: 'HCM',
+          Province: 'Quan 3',
+          Content: 'khong co',
+          cartitems: this.cartModel,
         },
       };
       this.postRequest(this.URLC + 'AddOrder', baseRequest1)
         .subscribe(
           res => {
-            alert("Da luu hoa don");
+            alert('Da luu hoa don');
             this.router.navigateByUrl('/home');
           },
           () => console.log('HTTP request complete.')
@@ -96,8 +96,8 @@ export class GioHangComponent implements OnInit, AfterViewInit {
     return this.http.post(api, request, { observe: 'body' })
       .pipe(
         map((body: any) => {
-          if (body.success) {          
-            return [body.items,body.totalPrice];
+          if (body.success) {
+            return [body.items, body.totalPrice];
           } else {
             throwError(body.message);
             this.router.navigateByUrl('/home');

@@ -15,7 +15,7 @@ export class LoginUserComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
-  public gapiSetup: boolean = false; // marks if the gapi library has been loaded
+  public gapiSetup = false; // marks if the gapi library has been loaded
   public authInstance: gapi.auth2.GoogleAuth;
   public error: string;
   public user: gapi.auth2.GoogleUser;
