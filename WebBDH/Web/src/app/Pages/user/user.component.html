@@ -21,39 +21,30 @@
                             <a (click)="onselect('nam')">NAM</a>
                         </li>
                         <li nz-menu-item><a (click)="onselect('nu')">NỮ</a></li>
-                        <li nz-menu-item><a routerLink="home" nz-dropdown [nzDropdownMenu]="menu1"> G-SHOCK
+                        <li nz-menu-item><a routerLink="home" nz-dropdown [nzDropdownMenu]="menu1"> Nhãn hàng
                                 <i nz-icon nzType="down"></i></a>
                             <nz-dropdown-menu #menu1="nzDropdownMenu">
                                 <ul nz-menu nzSelectable>
-                                    <li nz-menu-item>1st menu item</li>
-                                    <li nz-menu-item>2nd menu item</li>
-                                    <li nz-menu-item>3rd menu item</li>
-                                    <li nz-menu-item nzDanger>4th danger item</li>
+                                    <li nz-menu-item *ngFor="let item of listBrand" (click)="onselect('nhan-hieu='+item.name)">{{item.name}}</li>
                                 </ul>
                             </nz-dropdown-menu>
                         </li>
                         <li nz-menu-item>
-                            <a routerLink="home" nz-dropdown [nzDropdownMenu]="menu2">Màu Dây<i nz-icon
+                            <a routerLink="home" nz-dropdown [nzDropdownMenu]="menu2">Loại Dây<i nz-icon
                                     nzType="down"></i> </a>
                             <nz-dropdown-menu #menu2="nzDropdownMenu">
                                 <ul nz-menu nzSelectable>
-                                    <li nz-menu-item>Xanh</li>
-                                    <li nz-menu-item>Đỏ</li>
-                                    <li nz-menu-item>Vàng</li>
-                                    <li nz-menu-item nzDanger>Đen</li>
+                                    <li nz-menu-item *ngFor="let item of listLoaiDay" (click)="onselect('loai-day='+item.name)">{{item.name}}</li>
                                 </ul>
                             </nz-dropdown-menu>
                         </li>
                         <li nz-menu-item><a routerLink="tag/BABY-G">BABY-G</a></li>
                         <li nz-menu-item>
-                            <a routerLink="home" nz-dropdown [nzDropdownMenu]="menu3"> CASIO<i nz-icon
+                            <a routerLink="home" nz-dropdown [nzDropdownMenu]="menu3"> Mặt Đồng Hồ<i nz-icon
                                     nzType="down"></i></a>
                             <nz-dropdown-menu #menu3="nzDropdownMenu">
                                 <ul nz-menu nzSelectable>
-                                    <li nz-menu-item>1st menu item</li>
-                                    <li nz-menu-item>2nd menu item</li>
-                                    <li nz-menu-item>3rd menu item</li>
-                                    <li nz-menu-item nzDanger>4th danger item</li>
+                                    <li nz-menu-item  *ngFor="let item of listMatDH" (click)="onselect('mat-dong-ho='+item.name)">{{item.name}}</li>
                                 </ul>
                             </nz-dropdown-menu>
                         </li>

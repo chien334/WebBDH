@@ -6,17 +6,10 @@ import { HomeComponent } from './home/home.component';
 import { DetailComponent } from './detail-product/detail.component';
 import { ComponentModule } from 'src/app/Components/component.module';
 import { UserComponent } from './user.component';
-import { DetailModule } from './detail-product/detail.module';
-import { HomeModule } from './home/home.module';
 import { TagComponent } from './tag/tag.component';
-import { Component } from '@angular/core';
-import { NzAffixModule } from 'ng-zorro-antd/affix';
-import { NzStatisticModule } from 'ng-zorro-antd/statistic';
-import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
-import { NzCardModule } from 'ng-zorro-antd/card';
-import { BrowserModule } from '@angular/platform-browser';
 import { GioHangComponent } from './gio-hang/gio-hang.component';
 import { ListProductComponent } from './tag/list-product/list-product.component';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -45,7 +38,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     NgZorroAntdModule,
     ComponentModule,
-    BrowserModule
+    FormsModule
   ],
   declarations: [
     UserComponent,

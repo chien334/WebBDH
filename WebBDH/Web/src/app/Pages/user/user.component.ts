@@ -1,5 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { Observable, throwError } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 
 @Component({
@@ -16,10 +19,26 @@ export class UserComponent implements OnInit {
   offsetBottom = 0;
   deadline = Date.now() + 1000 * 60 * 60 * 24 * 2;
   deadLines = Date.now() + 1000 * 60;
+  PATH = 'https://localhost:44399/admin/api/';
+  listBrand = [];
+  listLoaiDay = [];
+  listMatDH = [];
   @ViewChild('valueSearch') name: ElementRef;
-  constructor(private tokenStorageService: TokenStorageService, private router: Router) { }
-  ngOnInit(): void {
+  constructor(private tokenStorageService: TokenStorageService, private router: Router, private http: HttpClient) { }
+  async ngOnInit(): Promise<void> {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
+    this.listBrand = await this.getModel('Brand/search');
+    this.listLoaiDay = await this.getModel('loaidays/search');
+    this.listMatDH = await this.getModel('matdonghos/search');
+  }
+  async getModel(str: any): Promise<any> {
+    const baseRequest = {
+      page: 1,
+      pageSize: 10,
+      entity: {
+      }
+    };
+    return await this.postRequest(this.PATH + str, baseRequest).toPromise();
   }
   login(): void {
     this.router.navigateByUrl('/loginuser');
@@ -39,7 +58,6 @@ export class UserComponent implements OnInit {
         this.router.navigated = false;
       }
     });
-
   }
   onKey(event: any): void {
     this.onselect(event);
@@ -47,5 +65,18 @@ export class UserComponent implements OnInit {
   getdata(): void {
     const value = this.name.nativeElement.value;
     this.onselect(value);
+  }
+  postRequest(api: string, request: any): Observable<any> {
+    return this.http.post(api, request, { observe: 'body' })
+      .pipe(
+        map((body: any) => {
+          if (body.success) {
+            return body.items;
+          } else {
+            throwError(body.message);
+          }
+
+        })
+      );
   }
 }

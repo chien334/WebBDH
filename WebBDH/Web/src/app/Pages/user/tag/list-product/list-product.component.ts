@@ -27,6 +27,7 @@ export class ListProductComponent implements OnInit {
       pageSize: 20,
       entity: {}
     };
+    const test = tag.indexOf('nhan-hieu');
     if (tag === 'nam') {
       baseRequest.entity = { sex: true };
     } else if (tag === 'nu') {
@@ -39,12 +40,27 @@ export class ListProductComponent implements OnInit {
     } else if (tag === 'priceB') {
       baseRequest.entity = {
         fromPrice: 1000001,
-          toPrice: 2000000
+        toPrice: 2000000
       };
     } else if (tag === 'priceC') {
       baseRequest.entity = {
         fromPrice: 2000001,
         toPrice: 50000000
+      };
+    } else if (tag.indexOf('mat-dong-ho') === 0) {
+      const item = tag.split('=');
+      baseRequest.entity = {
+        idMatDH: item[1]
+      };
+    } else if (tag.indexOf('nhan-hieu') === 0) {
+      const item = tag.split('=');
+      baseRequest.entity = {
+        idBrand: item[1]
+      };
+    } else if (tag.indexOf('loai-day') === 0) {
+      const item = tag.split('=');
+      baseRequest.entity = {
+        idLoaiDay: item[1]
       };
     } else {
       baseRequest.entity = { name: tag };
