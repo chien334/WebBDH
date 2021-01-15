@@ -13,6 +13,7 @@ import { LoaiDayComponent } from './loai-day/loai-day.component';
 import { MatDongHoComponent } from './mat-dong-ho/mat-dong-ho.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { UserOrderComponent } from './user-order/user-order.component';
 const routes: Routes = [
     {
         path: 'admin',
@@ -22,6 +23,7 @@ const routes: Routes = [
             { path: 'brand', component: BrandComponent },
             { path: 'mat-dong-ho', component: MatDongHoComponent },
             { path: 'loai-day', component: LoaiDayComponent },
+            { path: 'user-order', component: UserOrderComponent },
         ]
     }
 ];
@@ -44,7 +46,8 @@ const routes: Routes = [
         ProductComponent,
         BrandComponent,
         MatDongHoComponent,
-        LoaiDayComponent
+        LoaiDayComponent,
+        UserOrderComponent
     ],
     exports: [
         RouterModule,
@@ -52,7 +55,8 @@ const routes: Routes = [
         ProductComponent,
         BrandComponent,
         MatDongHoComponent,
-        LoaiDayComponent
+        LoaiDayComponent,
+        UserOrderComponent
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

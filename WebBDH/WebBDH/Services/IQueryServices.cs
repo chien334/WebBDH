@@ -34,5 +34,7 @@ namespace BDH.Services
         Task<IPagedList<CartItem>> LoadCart(QueryModel<CartQuery> model, CancellationToken cancellation = default);
         Task<CartItem> CheckCartItem(long productid, long cartid);
         Task DeleteCartItem(long cartitemid);
+        Task<IPagedList<UserOrderView>> SearchUserOrder(QueryModel<UserOrderQuery> model, CancellationToken cancellation = default);
+        Task<IPagedList<OrderListDetail>> SearchItemOrder(QueryModel<OrderListDetail> model, CancellationToken cancellation = default);
     }
 }

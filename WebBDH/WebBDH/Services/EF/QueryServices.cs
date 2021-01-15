@@ -59,7 +59,7 @@ namespace BDH.Services.EF
         }
         public async Task<long> LastIdOrderAsync(CancellationToken cancellationToken = default)
         {
-            var last = await dbContext.Set<UserOrder>().OrderByDescending(x=>x.Id).FirstOrDefaultAsync();
+            var last = await dbContext.Set<UserOrderView>().OrderByDescending(x=>x.Id).FirstOrDefaultAsync();
             if(last != null)
             {
                 return last.Id;
@@ -187,6 +187,30 @@ namespace BDH.Services.EF
                     Path=x.Path
                 })
                 .PageResultAsync(model.Page, model.PageSize, cancellation);
+        }
+        public async Task<IPagedList<UserOrderView>> SearchUserOrder(QueryModel<UserOrderQuery> model, CancellationToken cancellation = default)
+        {
+            return await dbContext.Set<UserOrder>()
+               .AsNoTracking()
+               .Select(x => new UserOrderView(x))
+               .PageResultAsync(model.Page, model.PageSize, cancellation);
+        }
+        public async Task<IPagedList<OrderListDetail>> SearchItemOrder(QueryModel<OrderListDetail> model, CancellationToken cancellation = default)
+        {
+            return await dbContext.Set<OrderListDetail>()
+                   .AsNoTracking()
+                   .Where(e =>
+                        (model.Entity.OrderId == default || e.OrderId == model.Entity.OrderId)
+                    )
+                   .Select(x => new OrderListDetail() {
+                       Id= x.Id,
+                       Name=x.Name,
+                       OrderId= x.OrderId,
+                       Price= x.Price,
+                       Quantity= x.Quantity,
+                       FirstName= x.FirstName
+                   })
+                   .PageResultAsync(model.Page, model.PageSize, cancellation);
         }
         /// Cart Service
         public async Task<IPagedList<CartItem>> LoadCart(QueryModel<CartQuery> model, CancellationToken cancellation = default)

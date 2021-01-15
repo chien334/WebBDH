@@ -10,10 +10,12 @@ namespace WebBDH.Responsitories
 {
     public partial class BDHContext
     {
+        public virtual DbSet<OrderListDetail> OrderListDetails { get; set; }
         [Obsolete]
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder)
         {
             modelBuilder.Query<ProductModel>().ToView("v_Product");
+            modelBuilder.Query<OrderListDetail>().ToView("v_ListItemOrder");
         }
 
     }

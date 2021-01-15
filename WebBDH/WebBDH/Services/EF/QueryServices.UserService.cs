@@ -61,7 +61,8 @@ namespace BDH.Services.EF
                     LastName=x.LastName,
                     FirstName= x.FirstName,
                     Email=x.Email,
-                    Phone=x.Phone
+                    Phone=x.Phone,
+                    
                  })
                 .FirstOrDefault();
 
